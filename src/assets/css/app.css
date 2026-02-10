@@ -1,7 +1,67 @@
 @import url(./var.css);
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+.content {
+    flex: 1;
+
+    background-color: #fdf6d0;
+
+}
+
+footer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--hf-color);
+    color: var(--text-color);
+    padding: 10px 40px;
+}
+
+.gauche {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gauche img {
+    width: 80px;
+    height: 80px;
+}
+
+.droite {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+}
+
+.footer-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
 }

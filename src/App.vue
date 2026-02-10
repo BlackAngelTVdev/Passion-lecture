@@ -23,21 +23,27 @@ onMounted(async () => {
 </script>
 
 <template>
-  <TheHeader />
-  <div class="container">
-    <h2 class="main-title">Un endroit pour vos livres</h2>
+  <div class="app-wrapper">
+    <TheHeader />
 
-    <p v-if="error" class="error">{{ error }}</p>
+    <main class="content">
+      <div class="container">
+        <h2 class="main-title">Un endroit pour vos livres</h2>
 
-    <div v-else class="book-grid">
-      <div v-for="book in latestBooks" :key="book.id" class="book-card">
-        <img :src="`${book.image}`" :alt="book.title" class="book-image" />
-        <div class="book-info">
-          <span class="title-author">{{ book.title }} | {{ book.author }}</span>
-          <span class="user-label">user</span>
+        <p v-if="error" class="error">{{ error }}</p>
+
+        <div v-else class="book-grid">
+          <div v-for="book in latestBooks" :key="book.id" class="book-card">
+            <img :src="book.image" :alt="book.title" class="book-image" />
+            <div class="book-info">
+              <span class="title-author">{{ book.title }} | {{ book.author }}</span>
+              <span class="user-label">user</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
+
+    <TheFooter />
   </div>
-  <TheFooter />
 </template>
