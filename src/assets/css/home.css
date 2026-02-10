@@ -1,6 +1,6 @@
 @import url(./var.css);
 .container {
-  background-color: #fdf6d0; /* Beige clair */
+  background-color: var(--background-color);
   text-align: center;
   padding: 50px 20px;
   min-height: 400px;
@@ -25,7 +25,7 @@
 
 .book-image {
   width: 140px;
-  height: 140px;
+  height: 240px;
   object-fit: cover;
   border: 1px solid #000;
   display: block;
