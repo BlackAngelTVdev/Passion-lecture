@@ -1,0 +1,45 @@
+@import url(./var.css);
+.container {
+  background-color: #fdf6d0; /* Beige clair */
+  text-align: center;
+  padding: 50px 20px;
+  min-height: 400px;
+}
+
+.main-title {
+  font-family: sans-serif;
+  font-size: 3rem;
+  margin-bottom: 50px;
+}
+
+.book-grid {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.book-card {
+  width: 140px;
+  text-align: center;
+}
+
+.book-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border: 1px solid #000;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.title-author {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.user-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #333;
+}
