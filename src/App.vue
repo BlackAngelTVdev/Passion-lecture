@@ -1,11 +1,32 @@
-<script setup lang="ts"></script>
+<script setup>
+import { ref, onMounted } from 'vue';
+import api from '@/services/api';
+
+const books = ref([]);
+const error = ref(null);
+
+onMounted(async () => {
+  try {
+    books.value = await api.getBooks();
+  } catch (err) {
+    error.value = "Impossible de charger les données.";
+    console.error(err);
+  }
+});
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
-</template>
+  <div class="p-4">
+    <h2>Ma Liste de Livres</h2>
+    
+    <p v-if="error" style="color: red;">{{ error }}</p>
 
-<style scoped></style>
+    <div v-else class="grid">
+      <div v-for="book in books" :key="book.id" class="card">
+        <h3>{{ book.title }}</h3>
+        <p>Auteur : {{ book.author }}</p>
+        <img :src="book.image" :alt="book.title" width="100">
+      </div>
+    </div>
+  </div>
+</template>
