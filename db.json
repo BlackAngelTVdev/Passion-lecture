@@ -1,0 +1,95 @@
+{
+  "user": [
+    { "id": 1, "username": "Damien", "password": "secret123" },
+    { "id": 2, "username": "Gianmacrco", "password": "secret456" },
+    { "id": 3, "username": "Albert", "password": "secret789" },
+    { "id": 4, "username": "Sophie", "password": "secret012" },
+    { "id": 5, "username": "Liam", "password": "secret345" },
+    { "id": 6, "username": "Emma_Dev", "password": "password!2026" },
+    { "id": 7, "username": "Lucas_Sky", "password": "force_user" }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "Harry Potter",
+      "author": "J.K. Rowling",
+      "category": "Fantasy",
+      "published": 1997,
+      "nbpages": 309,
+      "editor": "Bloomsbury",
+      "resume": "Un jeune orphelin découvre ses pouvoirs magiques et intègre une école de sorcellerie.",
+      "extrait": "https://launcher.laxacube.ch/",
+      "image": "https://m.media-amazon.com/images/I/51UoqwM9T-L._SX331_BO1,204,203,200_.jpg",
+      "commant": [
+        { "id": 1, "title": "Incroyable classique", "postId": 1 },
+        { "id": 2, "title": "J'attend toujours ma lettre", "postId": 1 }
+      ],
+      "rate": 4.8
+    },
+    {
+      "id": 2,
+      "title": "Le Seigneur des Anneaux",
+      "author": "J.R.R. Tolkien",
+      "category": "Fantasy",
+      "published": 1954,
+      "nbpages": 1178,
+      "editor": "Allen & Unwin",
+      "resume": "Une quête épique pour détruire un anneau maléfique et sauver la Terre du Milieu.",
+      "extrait": "https://launcher.laxacube.ch/lotr",
+      "image": "https://m.media-amazon.com/images/I/91b0C2YNSGL.jpg",
+      "commant": [
+        { "id": 1, "title": "Un chef-d'œuvre absolu", "postId": 2 },
+        { "id": 2, "title": "Un peu long mais riche", "postId": 2 }
+      ],
+      "rate": 4.9
+    },
+    {
+      "id": 3,
+      "title": "1984",
+      "author": "George Orwell",
+      "category": "Dystopie",
+      "published": 1949,
+      "nbpages": 328,
+      "editor": "Secker & Warburg",
+      "resume": "Big Brother vous regarde. Une vision terrifiante d'un futur totalitaire.",
+      "extrait": "https://launcher.laxacube.ch/1984",
+      "image": "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg",
+      "commant": [
+        { "id": 1, "title": "Toujours d'actualité", "postId": 3 }
+      ],
+      "rate": 4.7
+    },
+    {
+      "id": 4,
+      "title": "Le Petit Prince",
+      "author": "Antoine de Saint-Exupéry",
+      "category": "Conte",
+      "published": 1943,
+      "nbpages": 96,
+      "editor": "Reynal & Hitchcock",
+      "resume": "Un aviateur échoué dans le désert rencontre un jeune prince venu d'une autre planète.",
+      "extrait": "https://launcher.laxacube.ch/prince",
+      "image": "https://m.media-amazon.com/images/I/71OZY0m69EL.jpg",
+      "commant": [
+        { "id": 1, "title": "Poétique et triste", "postId": 4 }
+      ],
+      "rate": 5.0
+    },
+    {
+      "id": 5,
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "category": "Science-Fiction",
+      "published": 1965,
+      "nbpages": 612,
+      "editor": "Chilton Books",
+      "resume": "L'histoire de Paul Atreides sur la planète désertique Arrakis, entre complots et prophéties.",
+      "extrait": "https://launcher.laxacube.ch/dune",
+      "image": "https://m.media-amazon.com/images/I/81C6+X9oXpL.jpg",
+      "commant": [
+        { "id": 1, "title": "L'épice doit circuler", "postId": 5 }
+      ],
+      "rate": 4.6
+    }
+  ]
+}
