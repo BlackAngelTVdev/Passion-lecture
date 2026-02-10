@@ -65,3 +65,40 @@ footer {
 .footer-link:hover {
     text-decoration: underline;
 }
+
+header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--hf-color);
+
+}
+
+h1 {
+    font-size: 67px;
+    margin: 20px;
+    color: var(--text-color);
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+.router-link-active {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.Button {
+    background-color: var(--bouton-color);
+    font-size: 32px;
+    padding: 15px;
+    margin: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+header .Button:last-child {
+    margin-right: 150px;
+}
