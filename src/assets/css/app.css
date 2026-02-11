@@ -1,5 +1,6 @@
 @import url(./var.css);
 @import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
@@ -11,7 +12,6 @@ html,
 body {
     height: 100%;
     margin: 0;
-    overflow-x: hidden;
 }
 
 #app {
@@ -23,21 +23,64 @@ span {
     font-family: 'Bitter', serif;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Jaro', sans-serif;
+}
+
 .app-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-
+    min-height: 100vh;
 }
 
 .content {
     flex: 1 0 auto;
-
     background-color: #fdf6d0;
     display: flex;
     flex-direction: column;
 }
 
+/* --- HEADER --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--hf-color);
+    flex-shrink: 0;
+}
+
+header a {
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 67px;
+    margin: 20px;
+    color: var(--text-color);
+}
+
+.Button {
+    background-color: var(--bouton-color);
+    font-family: 'Jaro', sans-serif;
+    font-size: 2rem;
+    padding: 15px;
+    margin: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+header .Button:last-child {
+    margin-right: 150px;
+}
+
+/* --- FOOTER --- */
 footer {
     flex-shrink: 0;
     width: 100%;
@@ -76,49 +119,4 @@ footer {
 
 .footer-link:hover {
     text-decoration: underline;
-}
-
-header {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--hf-color);
-
-}
-
-header a {
-    text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'Jaro', sans-serif;
-}
-
-h1 {
-    font-size: 67px;
-    margin: 20px;
-    color: var(--text-color);
-    text-decoration: none !important;
-    border-bottom: none !important;
-
-}
-
-.Button {
-    background-color: var(--bouton-color);
-    font-size: 2rem;
-    padding: 15px;
-    margin: 20px;
-    color: var(--text-color);
-    text-decoration: none;
-    border-radius: 15px;
-}
-
-header .Button:last-child {
-    margin-right: 150px;
 }

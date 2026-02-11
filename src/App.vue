@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import api from '@/services/api'
-import '@/assets/css/home.css'
 import '@/assets/css/app.css'
 import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
