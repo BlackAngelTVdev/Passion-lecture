@@ -97,3 +97,22 @@
     font-family: 'Bitter', serif;
     font-size: 1.5rem;
 }
+
+.meta-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.star {
+    font-size: 2.8rem;
+    color: gold;
+}
+
+.rating-value {
+    font-family: 'Bitter', serif;
+    font-size: 1.2rem;
+    color: #555;
+
+}
