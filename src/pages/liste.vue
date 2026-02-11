@@ -11,10 +11,10 @@ const selectedCategory = ref('Tous')
 const categories = computed(() => {
   // On récupère toutes les catégories des livres
   const allCategories = books.value.map(book => book.category)
-  
+
   // On utilise "Set" pour supprimer les doublons (ex: éviter d'avoir 4 fois 'Fantasy')
   const uniqueCategories = [...new Set(allCategories)]
-  
+
   // On ajoute 'Tous' au début et on trie par ordre alphabétique
   return ['Tous', ...uniqueCategories.sort()]
 })
@@ -53,12 +53,8 @@ import '@/assets/css/liste.css'
 
     <main class="content">
       <div class="categorie">
-        <button 
-          v-for="cat in categories" 
-          :key="cat"
-          @click="selectedCategory = cat"
-          :class="{ active: selectedCategory === cat }"
-        >
+        <button v-for="cat in categories" :key="cat" @click="selectedCategory = cat"
+          :class="{ active: selectedCategory === cat }">
           {{ cat }}
         </button>
       </div>
@@ -73,7 +69,8 @@ import '@/assets/css/liste.css'
 
             <div class="book-info">
               <span>
-                <router-link to="'/livre/' + book.id" class="title-author">{{ book.title }} | {{ book.author }}</router-link>
+                <router-link :to="`/livre/${book.id}`" class="title-author">{{ book.title }} | {{ book.author
+                  }}</router-link>
               </span>
               <span>
                 <router-link to="" class="user-label">Par : {{ getUserName(book.userId) }}</router-link>
