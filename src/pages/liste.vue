@@ -1,8 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import api from '@/services/api'
-import '@/assets/css/liste.css'
-import '@/assets/css/app.css'
+
 
 const books = ref([])
 const users = ref([])
@@ -44,6 +43,9 @@ const getUserName = (userId) => {
   const userFound = users.value.find((u) => u.id === userId)
   return userFound ? userFound.username : 'Inconnu'
 }
+</script>
+<script scoped>
+import '@/assets/css/liste.css'
 </script>
 
 <template>
