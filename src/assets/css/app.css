@@ -75,6 +75,10 @@ header {
 
 }
 
+header a{
+    text-decoration: none;
+}
+
 h1 {
     font-size: 67px;
     margin: 20px;
@@ -83,15 +87,9 @@ h1 {
     border-bottom: none !important;
 }
 
-.router-link-active {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
 .Button {
     background-color: var(--bouton-color);
-    font-size: 32px;
+    font-size: 2rem;
     padding: 15px;
     margin: 20px;
     color: var(--text-color);
