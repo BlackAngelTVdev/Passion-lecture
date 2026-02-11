@@ -1,0 +1,25 @@
+.categorie {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px auto; 
+  border-bottom: 2px solid black;
+  width: 60%;
+  min-width: 300px;
+  padding-bottom: 10px;
+}
+
+.categorie button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+  padding: 5px 10px;
+  transition: all 0.3s;
+}
+
+.categorie button.active {
+  font-weight: bold;
+  border-bottom: 3px solid #000; /* Souligne la catégorie active */
+}

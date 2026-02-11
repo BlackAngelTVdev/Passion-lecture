@@ -164,6 +164,24 @@
       "commant": [{ "id": 1, "title": "Magique pour tous les âges", "postId": 10 }],
       "rate": 4.6,
       "userId": 7
+    },
+    {
+      "id": 11,
+      "title": "Les Misérables",
+      "author": "Victor Hugo",
+      "category": "Classique",
+      "published": 1862,
+      "nbpages": 1632,
+      "editor": "A. Lacroix, Verboeckhoven & Ce",
+      "resume": "Le destin de Jean Valjean, ancien forçat, dans la France du XIXe siècle, entre rédemption et poursuite implacable.",
+      "extrait": "https://launcher.laxacube.ch/vuejs/",
+      "image": "https://m.media-amazon.com/images/I/71Yf9N2vVXL._AC_UF1000,1000_QL80_.jpg",
+      "commant": [
+        { "id": 1, "title": "Une fresque monumentale", "postId": 11 },
+        { "id": 2, "title": "Jean Valjean est une inspiration", "postId": 11 }
+      ],
+      "rate": 4.9,
+      "userId": 5
     }
   ]
 }
