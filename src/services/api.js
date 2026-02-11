@@ -13,4 +13,9 @@ export default {
     if (!response.ok) throw new Error('Erreur réseau lors de la récupération des users')
     return await response.json()
   },
+  async getBookById(id) {
+    const response = await fetch(`${BASE_URL}/books/${id}`)
+    if (!response.ok) throw new Error('Livre introuvable')
+    return await response.json()
+  },
 }
