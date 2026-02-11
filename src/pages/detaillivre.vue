@@ -25,7 +25,9 @@ import '@/assets/css/detaillivre.css'
         <main class="content">
             <div class="container">
                 <div v-if="book" class="book-detail">
-                    <img :src="book.image" :alt="book.title">
+                    <img :src="book.image || 'https://via.placeholder.com/450x600?text=Lien+Vide'"
+                        @error="(e) => { e.target.src = 'https://placehold.co/200x255/red/white?text=Image+Introuvable' }"
+                        :alt="book.title">
 
                     <div class="book-info-content">
                         <div class="header-row">
