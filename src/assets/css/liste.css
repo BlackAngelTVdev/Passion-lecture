@@ -23,3 +23,15 @@
   font-weight: bold;
   border-bottom: 3px solid #000; /* Souligne la catégorie active */
 }
+
+.book-grid {
+    display: grid;
+    justify-content: center;
+    margin: auto;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 70%;
+}
+
+.book-card{
+    max-width: 200px;
+}
