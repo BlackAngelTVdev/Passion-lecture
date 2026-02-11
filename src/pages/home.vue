@@ -35,7 +35,6 @@ import '@/assets/css/home.css'
 
 <template>
   <div class="app-wrapper">
-    <router-view />
     <main class="content">
       <div class="container">
         <h2 class="main-title">Un endroit pour vos livres</h2>
