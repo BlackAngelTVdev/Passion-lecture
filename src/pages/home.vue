@@ -37,6 +37,11 @@ const getUserName = (userId) => {
     <main class="content">
       <div class="container">
         <h2 class="main-title">Un endroit pour vos livres</h2>
+        <p class="main-subtitle">
+          Plongez dans votre bibliothèque numérique personnelle. Explorez nos derniers titres,
+          consultez les résumés et survolez les extraits en un instant.
+          Notez vos lectures et partagez vos coups de cœur avec la communauté!
+        </p>
 
         <p v-if="error" class="error">{{ error }}</p>
 
@@ -52,6 +57,5 @@ const getUserName = (userId) => {
         </div>
       </div>
     </main>
-
   </div>
 </template>
