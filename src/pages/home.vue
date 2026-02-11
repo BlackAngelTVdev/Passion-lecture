@@ -52,8 +52,12 @@ import '@/assets/css/home.css'
             <img :src="book.image" :alt="book.title" class="book-image" />
 
             <div class="book-info">
-              <span class="title-author">{{ book.title }} | {{ book.author }}</span>
-              <span class="user-label">Par : {{ getUserName(book.userId) }}</span>
+              <span>
+                <router-link to="'/livre/' + book.id" class="title-author">{{ book.title }} | {{ book.author }}</router-link>
+              </span>
+              <span>
+                <router-link to="" class="user-label">Par : {{ getUserName(book.userId) }}</router-link>
+              </span>
             </div>
           </div>
         </div>
