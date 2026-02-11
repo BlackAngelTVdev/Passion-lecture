@@ -53,7 +53,9 @@ import '@/assets/css/home.css'
 
             <div class="book-info">
               <span>
-                <router-link to="'/livre/' + book.id" class="title-author">{{ book.title }} | {{ book.author }}</router-link>
+                <router-link :to="`/livre/${book.id}`" class="title-author">{{ book.title }} | {{ book.author
+                }}</router-link>
+
               </span>
               <span>
                 <router-link to="" class="user-label">Par : {{ getUserName(book.userId) }}</router-link>
