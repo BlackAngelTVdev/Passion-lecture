@@ -1,0 +1,99 @@
+.container {
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 1600px;
+}
+
+.book-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+
+    margin-top: 50px;
+}
+
+/* --- SECTION IMAGE (GAUCHE) --- */
+.book-detail img {
+    width: 450px;
+    height: auto;
+    border: 3px solid #000;
+    border-radius: 8px;
+    box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.1);
+    /* Ombre stylisée comme l'accueil */
+    flex-shrink: 0;
+}
+
+/* --- SECTION INFOS (DROITE) --- */
+.book-info-content {
+    flex: 1;
+    text-align: left;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.book-info-content h1 {
+    font-family: 'Jaro', sans-serif;
+    font-size: 5rem;
+    /* Titre énorme */
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.category-tag {
+    font-family: 'Bitter', serif;
+    font-size: 1.2rem;
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transform: translateY(-20px);
+}
+
+.meta-data {
+    font-family: 'Bitter', serif;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.resume-text {
+    font-family: 'Bitter', serif;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 800px;
+}
+
+/* --- BOUTON EXTRAIT --- */
+.btn-extrait {
+    display: inline-block;
+    font-family: 'Bitter', serif;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    color: #000;
+    font-weight: 700;
+    margin-bottom: 40px;
+    transition: opacity 0.2s;
+}
+
+.btn-extrait:hover {
+    opacity: 0.7;
+}
+
+/* --- SECTION COMMENTAIRE --- */
+.comment-section {
+    border-top: 2px solid #000;
+    padding-top: 20px;
+}
+
+.comment-section h3 {
+    font-family: 'Bitter', serif;
+    font-size: 1.5rem;
+}
