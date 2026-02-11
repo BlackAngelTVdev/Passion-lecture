@@ -7,7 +7,7 @@ import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
 
 const books = ref([])
-const users = ref([]) // 1. On crée la ref pour stocker les users
+const users = ref([])
 const error = ref(null)
 
 const latestBooks = computed(() => {

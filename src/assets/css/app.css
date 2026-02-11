@@ -1,4 +1,5 @@
 @import url(./var.css);
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
 
 * {
     margin: 0;
@@ -9,6 +10,12 @@
 html,
 body {
     height: 100%;
+
+}
+
+p,
+span {
+    font-family: 'Bitter', serif;
 }
 
 .app-wrapper {
@@ -20,9 +27,7 @@ body {
 
 .content {
     flex: 1;
-
     background-color: #fdf6d0;
-
 }
 
 footer {
@@ -75,8 +80,17 @@ header {
 
 }
 
-header a{
+header a {
     text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Jaro', sans-serif;
 }
 
 h1 {
@@ -85,6 +99,7 @@ h1 {
     color: var(--text-color);
     text-decoration: none !important;
     border-bottom: none !important;
+
 }
 
 .Button {
