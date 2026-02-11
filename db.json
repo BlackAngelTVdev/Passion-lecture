@@ -20,11 +20,14 @@
       "resume": "Un jeune orphelin découvre ses pouvoirs magiques et intègre une école de sorcellerie.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuGj7H13B5h4Q4EXDeOFBckRcNIxOgr-dDiVsh0aYFr2a5Rlwo1CUI3VhkSdDKsnJqiffUc1PzUlnQAnN0UEB7_a_UN5-qbNxPodxfM58&s",
-      "commant": [
-        { "id": 1, "title": "Incroyable classique", "postId": 1 },
-        { "id": 2, "title": "J'attend toujours ma lettre", "postId": 1 }
+      "comments": [
+        { "id": 1, "userId": 2, "title": "Incroyable classique" },
+        { "id": 2, "userId": 7, "title": "J'attend toujours ma lettre" }
       ],
-      "rate": 4.8,
+      "rates": [
+        { "id": 1, "userId": 2, "value": 5 },
+        { "id": 2, "userId": 7, "value": 4 }
+      ],
       "userId": 1
     },
     {
@@ -38,11 +41,14 @@
       "resume": "Une quête épique pour détruire un anneau maléfique et sauver la Terre du Milieu.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://fr.web.img3.acsta.net/medias/nmedia/18/35/14/33/18366630.jpg",
-      "commant": [
-        { "id": 1, "title": "Un chef-d'œuvre absolu", "postId": 2 },
-        { "id": 2, "title": "Un peu long mais riche", "postId": 2 }
+      "comments": [
+        { "id": 1, "userId": 5, "title": "Un chef-d'œuvre absolu" },
+        { "id": 2, "userId": 1, "title": "Un peu long mais riche" }
       ],
-      "rate": 4.9,
+      "rates": [
+        { "id": 1, "userId": 5, "value": 5 },
+        { "id": 2, "userId": 1, "value": 5 }
+      ],
       "userId": 3
     },
     {
@@ -56,8 +62,8 @@
       "resume": "Big Brother vous regarde. Une vision terrifiante d'un futur totalitaire.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://cdn.kobo.com/book-images/c9472126-7f96-402d-ba57-5ba4c0f4b238/1200/1200/False/nineteen-eighty-four-1984-george.jpg",
-      "commant": [{ "id": 1, "title": "Toujours d'actualité", "postId": 3 }],
-      "rate": 4.7,
+      "comments": [{ "id": 1, "userId": 2, "title": "Toujours d'actualité" }],
+      "rates": [{ "id": 1, "userId": 4, "value": 4 }],
       "userId": 2
     },
     {
@@ -71,8 +77,8 @@
       "resume": "Un aviateur échoué dans le désert rencontre un jeune prince venu d'une autre planète.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://m.media-amazon.com/images/I/61NGp-UxolL._AC_UF1000,1000_QL80_.jpg",
-      "commant": [{ "id": 1, "title": "Poétique et triste", "postId": 4 }],
-      "rate": 5.0,
+      "comments": [{ "id": 1, "userId": 4, "title": "Poétique et triste" }],
+      "rates": [{ "id": 1, "userId": 1, "value": 5 }],
       "userId": 4
     },
     {
@@ -86,8 +92,8 @@
       "resume": "L'histoire de Paul Atreides sur la planète désertique Arrakis, entre complots et prophéties.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://static01.galaxus.com/productimages/4/2/7/1/8/1/2/2/7/2/9/3/6/8/0/3/3/3/f0a63f8e-87a4-4ff4-9001-22adaf5adf61.jpg_720.jpeg",
-      "commant": [{ "id": 1, "title": "L'épice doit circuler", "postId": 5 }],
-      "rate": 4.6,
+      "comments": [{ "id": 1, "userId": 1, "title": "L'épice doit circuler" }],
+      "rates": [{ "id": 1, "userId": 2, "value": 4 }],
       "userId": 1
     },
     {
@@ -101,8 +107,8 @@
       "resume": "En l'an 1327, dans une abbaye bénédictine, des moines disparaissent. Un franciscain mène l'enquête.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://pictures.abebooks.com/inventory/5911091117.jpg",
-      "commant": [{ "id": 1, "title": "Une enquête fascinante", "postId": 6 }],
-      "rate": 4.5,
+      "comments": [{ "id": 1, "userId": 5, "title": "Une enquête fascinante" }],
+      "rates": [{ "id": 1, "userId": 3, "value": 4 }],
       "userId": 5
     },
     {
@@ -115,9 +121,9 @@
       "editor": "Ballantine Books",
       "resume": "Dans un futur où les livres sont interdits, les pompiers ont pour mission de les brûler.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
-      "image": "https://images.epagine.fr/560/9782207178560_1_75.jpg§",
-      "commant": [{ "id": 1, "title": "Un message puissant", "postId": 7 }],
-      "rate": 4.8,
+      "image": "https://images.epagine.fr/560/9782207178560_1_75.jpg",
+      "comments": [{ "id": 1, "userId": 2, "title": "Un message puissant" }],
+      "rates": [{ "id": 1, "userId": 6, "value": 5 }],
       "userId": 2
     },
     {
@@ -131,8 +137,8 @@
       "resume": "Bilbo Bessac est entraîné dans une aventure inattendue par le magicien Gandalf et treize nains.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://images.epagine.fr/327/9782013235327_1_75.jpg",
-      "commant": [{ "id": 1, "title": "Parfait pour s'évader", "postId": 8 }],
-      "rate": 4.9,
+      "comments": [{ "id": 1, "userId": 3, "title": "Parfait pour s'évader" }],
+      "rates": [{ "id": 1, "userId": 5, "value": 5 }],
       "userId": 3
     },
     {
@@ -146,8 +152,8 @@
       "resume": "L'Empire Galactique s'effondre. Le mathématicien Hari Seldon prédit l'âge des ténèbres.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://static.fnac-static.com/multimedia/PE/Images/FR/NR/87/4c/11/1133703/1507-1/tsp20260102072836/Fondation.jpg",
-      "commant": [{ "id": 1, "title": "Le pilier de la SF", "postId": 9 }],
-      "rate": 4.7,
+      "comments": [{ "id": 1, "userId": 6, "title": "Le pilier de la SF" }],
+      "rates": [{ "id": 1, "userId": 7, "value": 5 }],
       "userId": 6
     },
     {
@@ -161,8 +167,8 @@
       "resume": "Quatre enfants découvrent un monde magique caché au fond d'une armoire.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://bibliows.payot.ch/api/image/B1DDAB713990225E4942384904A860F4716E604A/front/0/resized/mob_detail",
-      "commant": [{ "id": 1, "title": "Magique pour tous les âges", "postId": 10 }],
-      "rate": 4.6,
+      "comments": [{ "id": 1, "userId": 7, "title": "Magique pour tous les âges" }],
+      "rates": [{ "id": 1, "userId": 2, "value": 4 }],
       "userId": 7
     },
     {
@@ -176,11 +182,8 @@
       "resume": "Le destin de Jean Valjean, ancien forçat, dans la France du XIXe siècle, entre rédemption et poursuite implacable.",
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://m.media-amazon.com/images/I/71Yf9N2vVXL._AC_UF1000,1000_QL80_.jpg",
-      "commant": [
-        { "id": 1, "title": "Une fresque monumentale", "postId": 11 },
-        { "id": 2, "title": "Jean Valjean est une inspiration", "postId": 11 }
-      ],
-      "rate": 4.9,
+      "comments": [{ "id": 1, "userId": 5, "title": "Une fresque monumentale" }],
+      "rates": [{ "id": 1, "userId": 3, "value": 5 }],
       "userId": 5
     }
   ]
