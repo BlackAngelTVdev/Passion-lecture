@@ -20,6 +20,11 @@ const router = createRouter({
       name: 'LivreDetail',
       component: () => import('../pages/detaillivre.vue'),
     },
+    {
+      path: '/user/:id',
+      name: 'UserDetail',
+      component: () => import('../pages/detailUser.vue'),
+    },
   ],
 })
 
