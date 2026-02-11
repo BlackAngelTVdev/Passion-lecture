@@ -24,7 +24,8 @@
         { "id": 1, "title": "Incroyable classique", "postId": 1 },
         { "id": 2, "title": "J'attend toujours ma lettre", "postId": 1 }
       ],
-      "rate": 4.8
+      "rate": 4.8,
+      "userId": 1
     },
     {
       "id": 2,
@@ -41,7 +42,8 @@
         { "id": 1, "title": "Un chef-d'œuvre absolu", "postId": 2 },
         { "id": 2, "title": "Un peu long mais riche", "postId": 2 }
       ],
-      "rate": 4.9
+      "rate": 4.9,
+      "userId": 3
     },
     {
       "id": 3,
@@ -55,7 +57,8 @@
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://cdn.kobo.com/book-images/c9472126-7f96-402d-ba57-5ba4c0f4b238/1200/1200/False/nineteen-eighty-four-1984-george.jpg",
       "commant": [{ "id": 1, "title": "Toujours d'actualité", "postId": 3 }],
-      "rate": 4.7
+      "rate": 4.7,
+      "userId": 2
     },
     {
       "id": 4,
@@ -69,7 +72,8 @@
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://m.media-amazon.com/images/I/61NGp-UxolL._AC_UF1000,1000_QL80_.jpg",
       "commant": [{ "id": 1, "title": "Poétique et triste", "postId": 4 }],
-      "rate": 5.0
+      "rate": 5.0,
+      "userId": 4
     },
     {
       "id": 5,
@@ -83,7 +87,8 @@
       "extrait": "https://launcher.laxacube.ch/vuejs/",
       "image": "https://static01.galaxus.com/productimages/4/2/7/1/8/1/2/2/7/2/9/3/6/8/0/3/3/3/f0a63f8e-87a4-4ff4-9001-22adaf5adf61.jpg_720.jpeg",
       "commant": [{ "id": 1, "title": "L'épice doit circuler", "postId": 5 }],
-      "rate": 4.6
+      "rate": 4.6,
+      "userId": 1
     }
   ]
 }
