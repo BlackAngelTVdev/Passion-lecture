@@ -57,7 +57,7 @@ import '@/assets/css/home.css'
 
               </span>
               <span>
-                <router-link to="" class="user-label">Par : {{ getUserName(book.userId) }}</router-link>
+                <router-link :to="`/user/${book.userId}`" class="user-label">Par : {{ getUserName(book.userId) }}</router-link>
               </span>
             </div>
           </div>
