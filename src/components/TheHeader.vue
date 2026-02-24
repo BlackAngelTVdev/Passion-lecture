@@ -6,7 +6,7 @@
     </router-link>
     <nav>
       <router-link to="/Ajoute" class="Button">Ajouter</router-link>
-      <router-link to="/Livres" class="Button">Livres</router-link>
+      <router-link to="/livres" class="Button">Livres</router-link>
       <router-link to="/login" class="Button">Login</router-link>
     </nav>
   </header>

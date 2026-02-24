@@ -70,13 +70,13 @@ import '@/assets/css/liste.css'
                 }}</router-link>
               </span>
               <span>
-                <router-link :to="`/user/${book.userId}`" class="user-label">Par : {{ getUserName(book.userId) }}</router-link>
+                <router-link :to="`/user/${book.userId}`" class="user-label">Par : {{ getUserName(book.userId)
+                  }}</router-link>
               </span>
             </div>
           </div>
         </div>
       </div>
     </main>
-
   </div>
 </template>
