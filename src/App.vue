@@ -9,10 +9,6 @@ const books = ref([])
 const users = ref([])
 const error = ref(null)
 
-const latestBooks = computed(() => {
-  return books.value.slice(-5).reverse()
-})
-
 onMounted(async () => {
   try {
     // 2. On récupère les deux listes
@@ -24,12 +20,6 @@ onMounted(async () => {
   }
 })
 
-// 3. La fonction de recherche qui utilise users.value
-const getUserName = (userId) => {
-  if (!users.value.length) return 'Chargement...'
-  const userFound = users.value.find((u) => u.id === userId)
-  return userFound ? userFound.username : 'Inconnu'
-}
 </script>
 
 <template>
