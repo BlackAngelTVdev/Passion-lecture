@@ -64,4 +64,16 @@ export default {
       nbrate: totalRates,
     }
   },
+  async updateBook(id, bookData) {
+    const response = await fetch(`${BASE_URL}/books/${id}`, {
+      method: 'PUT', // On utilise PUT pour mettre à jour l'objet complet avec les nouveaux comms
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bookData),
+    })
+
+    if (!response.ok) throw new Error('Échec de la sauvegarde')
+    return await response.json()
+  },
 }
