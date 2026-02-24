@@ -1,26 +1,38 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import { onMounted, ref, computed } from 'vue' // Ajoute computed
+import { onMounted, ref, computed } from 'vue'
 import api from '@/services/api'
 import '@/assets/css/app.css'
 
 const route = useRoute()
 const book = ref(null)
+const users = ref([]) // Pour stocker la liste des users
 
 // Calcul de la moyenne des notes
 const averageRating = computed(() => {
-
     if (!book.value || !book.value.rates || book.value.rates.length === 0) return "N/A"
     const sum = book.value.rates.reduce((acc, curr) => acc + curr.value, 0)
-    const result = sum / book.value.rates.length
-    return result.toFixed(1)
+    return (sum / book.value.rates.length).toFixed(1)
 })
+
+const getUserName = (userId) => {
+    const user = users.value.find(u => u.id == userId)
+    return user ? user.username : `Utilisateur ${userId}`
+}
+
 onMounted(async () => {
     const id = route.params.id
     try {
-        book.value = await api.getBookById(id)
+        const [bookData, usersData] = await Promise.all([
+            api.getBookById(id),
+            api.getUsers()
+        ])
+        book.value = bookData
+        users.value = usersData
     } catch (err) {
-        console.error("Erreur lors de la récup du livre", err)
+        console.error("Erreur :", err)
+    } finally {
+        loading.value = false
     }
 })
 </script>
@@ -62,6 +74,17 @@ import '@/assets/css/detaillivre.css'
 
                         <div class="comment-section">
                             <h3>Commentaires</h3>
+
+                            <div v-if="loading">Chargement...</div>
+
+                            <div v-else-if="book && book.comments && book.comments.length > 0">
+                                <div v-for="comment in book.comments" :key="comment.id" class="comment-card">
+                                    <p><strong>{{ getUserName(comment.userId) }}</strong></p>
+                                    <p>{{ comment.title }}</p>
+                                </div>
+                            </div>
+
+                            <p v-else>Aucun commentaire pour le moment.</p>
                         </div>
                     </div>
                 </div>
