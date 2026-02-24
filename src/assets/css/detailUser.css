@@ -1,0 +1,14 @@
+.app-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.profile {
+    border: 15px solid #C27F51;
+    padding: 10%;
+    min-width: 450px;
+}
+.meta-data p {
+margin-top: 50px;
+font-size: 20px;
+}

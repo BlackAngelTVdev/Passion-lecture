@@ -22,11 +22,22 @@ import '@/assets/css/detailUser.css'
 
 <template>
     <div class="app-wrapper" v-if="user">
-        <h1>Profil de {{ user.username }}</h1>
-        <div class="meta-data">
-            Nombre d'ouvrages publiés : {{ user.nblivre }} <br>
-            Nombre d'appréciations données : {{ user.nbrate }} <br>
-            Nombre de commentaires écrits : {{ user.nbcomm }}
+        <div class="profile">
+            <h1>Profil de {{ user.username }}</h1>
+            <div class="meta-data">
+                <p>
+                    Créé le : {{ user.création }} <br>
+                </p>
+                <p>
+                Nombre d'ouvrages publiés : {{ user.nblivre }} <br>
+                </p>
+                <p>
+                Nombre d'appréciations données : {{ user.nbrate }} <br>
+                </p>
+                <p>
+                Nombre de commentaires écrits : {{ user.nbcomm }}
+                </p>
+            </div>
         </div>
     </div>
 </template>
