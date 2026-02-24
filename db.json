@@ -119,11 +119,7 @@
         { "id": 2, "userId": 5, "title": "Politique et SF, le mix parfait." },
         { "id": 3, "userId": 2, "title": "Un peu dur à lire mais ça vaut le coup." }
       ],
-      "rates": [
-        { "id": 1, "userId": 2, "value": 4 },
-        { "id": 2, "userId": 5, "value": 5 },
-        { "id": 3, "userId": 1, "value": 5 }
-      ],
+      "rates": [{ "id": 1, "userId": 2, "value": 4 }],
       "userId": 1
     },
     {
@@ -142,11 +138,7 @@
         { "id": 2, "userId": 2, "title": "L'ambiance médiévale est top." },
         { "id": 3, "userId": 7, "title": "Un policier très intelligent." }
       ],
-      "rates": [
-        { "id": 1, "userId": 3, "value": 4 },
-        { "id": 2, "userId": 2, "value": 4 },
-        { "id": 3, "userId": 7, "value": 5 }
-      ],
+      "rates": [{ "id": 1, "userId": 3, "value": 4 }],
       "userId": 5
     },
     {
@@ -165,11 +157,7 @@
         { "id": 2, "userId": 4, "title": "Vraiment marquant." },
         { "id": 3, "userId": 1, "title": "À lire absolument." }
       ],
-      "rates": [
-        { "id": 1, "userId": 6, "value": 5 },
-        { "id": 2, "userId": 4, "value": 4 },
-        { "id": 3, "userId": 1, "value": 5 }
-      ],
+      "rates": [{ "id": 1, "userId": 6, "value": 5 }],
       "userId": 2
     },
     {
@@ -188,11 +176,7 @@
         { "id": 2, "userId": 7, "title": "Bilbo est super attachant." },
         { "id": 3, "userId": 5, "title": "Une aventure épique mais légère." }
       ],
-      "rates": [
-        { "id": 1, "userId": 5, "value": 5 },
-        { "id": 2, "userId": 7, "value": 4 },
-        { "id": 3, "userId": 3, "value": 5 }
-      ],
+      "rates": [{ "id": 1, "userId": 5, "value": 5 }],
       "userId": 3
     },
     {
@@ -211,11 +195,7 @@
         { "id": 2, "userId": 3, "title": "Visionnaire." },
         { "id": 3, "userId": 2, "title": "Un peu daté mais génial." }
       ],
-      "rates": [
-        { "id": 1, "userId": 7, "value": 5 },
-        { "id": 2, "userId": 6, "value": 5 },
-        { "id": 3, "userId": 3, "value": 4 }
-      ],
+      "rates": [{ "id": 1, "userId": 7, "value": 5 }],
       "userId": 6
     },
     {
@@ -234,35 +214,8 @@
         { "id": 2, "userId": 4, "title": "J'adore l'univers de Narnia." },
         { "id": 3, "userId": 1, "title": "Aslan est impressionnant." }
       ],
-      "rates": [
-        { "id": 1, "userId": 2, "value": 4 },
-        { "id": 2, "userId": 7, "value": 5 },
-        { "id": 3, "userId": 4, "value": 4 }
-      ],
+      "rates": [{ "id": 1, "userId": 2, "value": 4 }],
       "userId": 7
-    },
-    {
-      "id": 11,
-      "title": "Les Misérables",
-      "author": "Victor Hugo",
-      "category": "Classique",
-      "published": 1862,
-      "nbpages": 1632,
-      "editor": "A. Lacroix, Verboeckhoven & Ce",
-      "resume": "Le destin de Jean Valjean, ancien forçat, dans la France du XIXe siècle, entre rédemption et poursuite implacable.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/les_miserables.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/lesmiserable.jpg",
-      "comments": [
-        { "id": 1, "userId": 5, "title": "Une fresque monumentale" },
-        { "id": 2, "userId": 3, "title": "Hugo au sommet de son art." },
-        { "id": 3, "userId": 6, "title": "Long mais bouleversant." }
-      ],
-      "rates": [
-        { "id": 1, "userId": 3, "value": 5 },
-        { "id": 2, "userId": 5, "value": 5 },
-        { "id": 3, "userId": 6, "value": 4 }
-      ],
-      "userId": 5
     }
   ]
 }
