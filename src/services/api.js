@@ -37,23 +37,23 @@ export default {
     const allBooks = await this.getBooks()
 
     // 1. Compter les livres dont cet utilisateur est l'auteur
-    // On utilise == au lieu de === car l'ID de l'URL est souvent une string "1" 
+    // On utilise == au lieu de === car l'ID de l'URL est souvent une string "1"
     // alors que dans le JSON c'est un nombre 1
-    const userBooks = allBooks.filter(b => b.userId == userId)
+    const userBooks = allBooks.filter((b) => b.userId == userId)
 
     // 2. Compter les commentaires laissés par cet utilisateur
     let totalComments = 0
-    allBooks.forEach(b => {
+    allBooks.forEach((b) => {
       if (b.comments) {
-        totalComments += b.comments.filter(c => c.userId == userId).length
+        totalComments += b.comments.filter((c) => c.userId == userId).length
       }
     })
 
     // 3. Compter les notes laissées par cet utilisateur
     let totalRates = 0
-    allBooks.forEach(b => {
+    allBooks.forEach((b) => {
       if (b.rates) {
-        totalRates += b.rates.filter(r => r.userId == userId).length
+        totalRates += b.rates.filter((r) => r.userId == userId).length
       }
     })
 
@@ -61,7 +61,7 @@ export default {
       ...user,
       nblivre: userBooks.length,
       nbcomm: totalComments,
-      nbrate: totalRates
+      nbrate: totalRates,
     }
-  }
+  },
 }

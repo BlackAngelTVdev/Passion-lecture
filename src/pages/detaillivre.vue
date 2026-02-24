@@ -58,7 +58,7 @@ import '@/assets/css/detaillivre.css'
 
                         <p class="resume-text">{{ book.resume }}</p>
 
-                        <a :href="book.extrait" target="_blank" class="btn-extrait">Commencer un lire</a>
+                        <a :href="book.extrait" target="_blank" class="btn-extrait">Lire un extrait</a>
 
                         <div class="comment-section">
                             <h3>Commentaires</h3>
