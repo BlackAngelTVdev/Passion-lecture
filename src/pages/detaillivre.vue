@@ -118,7 +118,8 @@ import '@/assets/css/detaillivre.css'
                         <div class="comment-section">
                             <div class="header-row">
                                 <h3>Commentaires</h3>
-                                <button @click="openModal" class="category-tag" style="cursor: pointer; border: none;">+
+                                <button @click="openModal" class="category-tag add-tag"
+                                    style="cursor: pointer; border: none;">+
                                     Ajouter</button>
                             </div>
 
