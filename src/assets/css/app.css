@@ -19,6 +19,12 @@ body {
     height: 100%;
 }
 
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 p,
 span {
     font-family: 'Bitter', serif;

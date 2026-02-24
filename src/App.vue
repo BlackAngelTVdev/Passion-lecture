@@ -35,7 +35,11 @@ const getUserName = (userId) => {
 <template>
   <div class="app-wrapper">
     <TheHeader />
-    <router-view />
+    
+    <main class=main-content>
+      <router-view />
+    </main>
+
     <TheFooter />
   </div>
 </template>
