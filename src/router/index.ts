@@ -6,13 +6,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-
       component: () => import('../pages/home.vue'),
     },
     {
       path: '/livres',
       name: 'Livres',
-
       component: () => import('../pages/liste.vue'),
     },
     {
@@ -24,6 +22,11 @@ const router = createRouter({
       path: '/user/:id',
       name: 'UserDetail',
       component: () => import('../pages/detailUser.vue'),
+    },
+    {
+      path: '/ajouter',
+      name: 'AjoutLivre',
+      component: () => import('../pages/ajoutLivre.vue'),
     },
   ],
 })
