@@ -56,7 +56,7 @@ const submitComment = async () => {
     // Note : l'ID 1 est un exemple, en vrai tu prendras l'ID de l'utilisateur connecté
     const commentObj = {
         id: Date.now(),
-        userId: 1,
+        userId: 3,
         title: newComment.value
     }
 
