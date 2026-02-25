@@ -33,6 +33,14 @@ const categories = [
   'Autre',
 ]
 
+const getConnectedUserId = () => {
+    const userData = localStorage.getItem('user')
+    if (!userData) return null // Personne n'est connecté
+
+    const user = JSON.parse(userData)
+    return user.id // On récupère l'ID du user stocké
+}
+
 async function handleSubmit() {
   error.value = null
   success.value = false
@@ -42,7 +50,7 @@ async function handleSubmit() {
     await api.addBook({
       id: Date.now(),
       ...form.value,
-      userId: 1,
+      userId: getConnectedUserId() // On associe le livre à l'utilisateur connecté,
     })
     success.value = true
     setTimeout(() => router.push('/livres'), 1500)
