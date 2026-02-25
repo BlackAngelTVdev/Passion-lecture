@@ -86,6 +86,37 @@ const submitComment = async () => {
         closeModal()
     }
 }
+const userRating = ref(0) // Note sélectionnée par l'utilisateur
+
+// Fonction pour envoyer la note
+const submitRating = async (ratingValue) => {
+    const userId = getConnectedUserId()
+    if (!userId) return alert("Connecte-toi pour noter !")
+
+    const rateObj = { userId, value: ratingValue }
+
+    // On prépare l'objet livre mis à jour
+    const updatedBook = { ...book.value }
+    if (!updatedBook.rates) updatedBook.rates = []
+
+    // Si l'utilisateur a déjà noté, on remplace sa note, sinon on ajoute
+    const existingRateIndex = updatedBook.rates.findIndex(r => r.userId === userId)
+    if (existingRateIndex !== -1) {
+        updatedBook.rates[existingRateIndex] = rateObj
+    } else {
+        updatedBook.rates.push(rateObj)
+    }
+
+    try {
+        await api.updateBook(book.value.id, updatedBook)
+        book.value = updatedBook
+        userRating.value = ratingValue
+    } catch (err) {
+        console.warn("Update serveur impossible, refresh du cache local...")
+        book.value = updatedBook
+        api._saveToCache(`book_${book.value.id}`, updatedBook)
+    }
+}
 </script>
 <script scoped>
 import '@/assets/css/detaillivre.css'
@@ -109,7 +140,14 @@ import '@/assets/css/detaillivre.css'
                         <div class="meta-container">
                             <div class="rating-box">
                                 <span class="rating-value">{{ averageRating }}</span>
-                                <span class="star">★</span>
+                                <span class="star-main">★</span>
+
+                                <div class="rating-stars">
+                                    <span v-for="star in 5" :key="star" @click="submitRating(star)"
+                                        :class="['star-clickable', { active: star <= userRating }]">
+                                        ★
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="meta-data">
