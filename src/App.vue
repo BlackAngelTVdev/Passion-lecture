@@ -25,7 +25,7 @@ onMounted(async () => {
 <template>
   <div class="app-wrapper">
     <TheHeader />
-    
+
     <main class=main-content>
       <router-view />
     </main>

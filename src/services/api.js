@@ -97,6 +97,9 @@ export default {
 
     const updatedBook = await response.json()
 
+    // Si le serveur n'envoie pas de commentaires, on met une liste vide par défaut
+    if (!updatedBook.comments) updatedBook.comments = []
+
     // On update le livre et on vide la liste globale pour rafraîchir
     this._saveToCache(`book_${id}`, updatedBook)
     localStorage.removeItem('all_books')

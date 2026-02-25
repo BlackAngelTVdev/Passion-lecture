@@ -38,8 +38,6 @@ onMounted(async () => {
     }
 })
 
-
-
 const openModal = () => {
     showModal.value = true
 }
@@ -52,30 +50,33 @@ const closeModal = () => {
 const submitComment = async () => {
     if (newComment.value.trim() === "") return
 
-    // 1. On prépare l'objet du nouveau commentaire
-    // Note : l'ID 1 est un exemple, en vrai tu prendras l'ID de l'utilisateur connecté
     const commentObj = {
         id: Date.now(),
         userId: 3,
         title: newComment.value
     }
 
-    try {
-        // 2. On crée une copie du livre avec le nouveau commentaire
-        const updatedBook = { ...book.value }
-        if (!updatedBook.comments) updatedBook.comments = []
-        updatedBook.comments.push(commentObj)
+    // On prépare la mise à jour localement
+    const updatedBook = { ...book.value }
+    if (!updatedBook.comments) updatedBook.comments = []
+    updatedBook.comments.push(commentObj)
 
-        // 3. On envoie au serveur
+    try {
+        // On tente d'envoyer au serveur
         await api.updateBook(book.value.id, updatedBook)
 
-        // 4. Si ça marche, on met à jour l'affichage localement
+        // Si ça marche, on met à jour l'affichage
         book.value = updatedBook
-
         closeModal()
     } catch (err) {
-        alert("Erreur lors de l'envoi du commentaire")
-        console.error(err)
+        // SI ERREUR (Livre inconnu du serveur car ajouté en cache)
+        console.warn("Le serveur ne connaît pas ce livre, on update seulement le cache.")
+
+        // On force quand même la mise à jour locale et dans le cache
+        book.value = updatedBook
+        api._saveToCache(`book_${book.value.id}`, updatedBook)
+
+        closeModal()
     }
 }
 </script>
