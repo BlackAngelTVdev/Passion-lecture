@@ -56,27 +56,46 @@ onMounted(async () => {
 
 async function handleUpdate() {
     isLoading.value = true
-    error.value = null // On nettoie les erreurs au début
+    error.value = null
 
     try {
-        // 1. On récupère la version actuelle du livre (pour avoir les comms et ratings)
-        const currentBook = await api.getBookById(bookId)
+        // 1. On récupère la version la plus fraîche
+        // On met un try/catch ici aussi au cas où le livre n'est que dans le cache
+        let currentBook;
+        try {
+            currentBook = await api.getBookById(bookId)
+        } catch (e) {
+            // Si l'API renvoie 404, on prend ce qu'on a déjà dans le formulaire
+            currentBook = { ...form.value }
+        }
 
-        // 2. On crée l'objet final : 
-        // On prend tout l'ancien (...currentBook) 
-        // ET on écrase par dessus avec les modifs du formulaire (...form.value)
         const finalData = {
             ...currentBook,
             ...form.value
         }
 
-        // 3. On envoie cet objet complet au serveur
-        await api.updateBook(bookId, finalData)
+        try {
+            // 2. On tente le PUT au serveur
+            await api.updateBook(bookId, finalData)
+        } catch (serverErr) {
+            // 3. SI LE SERVEUR DIT NON (404), on force le cache manuellement
+            console.warn("Livre local détecté, mise à jour du cache uniquement.")
 
-        alert("Livre mis à jour !")
+            // On appelle directement les fonctions de cache pour pas perdre le travail
+            api._saveToCache(`book_${bookId}`, finalData)
+
+            const allBooks = api._getFromCache('all_books')
+            if (allBooks) {
+                const updatedList = allBooks.map(b => b.id == bookId ? finalData : b)
+                api._saveToCache('all_books', updatedList)
+            }
+        }
+
+        alert("Modification enregistrée !")
         router.push(`/livre/${bookId}`)
+
     } catch (err) {
-        error.value = "Erreur lors de la modification."
+        error.value = "Erreur critique lors de la modif."
         console.error(err)
     } finally {
         isLoading.value = false

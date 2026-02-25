@@ -100,15 +100,22 @@ export default {
     // Sécurité comms
     if (!updatedBook.comments) updatedBook.comments = []
 
-    // 1. Update du cache spécifique au livre
+    // 1. On met à jour le cache du livre lui-même (toujours)
     this._saveToCache(`book_${id}`, updatedBook)
 
-    // 2. UPDATE DE LA LISTE GLOBALE (au lieu de removeItem)
+    // 2. On met à jour la liste globale UNIQUEMENT si elle existe déjà dans le cache
     const allBooks = this._getFromCache('all_books')
-    if (allBooks) {
-      // On crée une nouvelle liste : si l'id match, on met le livre à jour, sinon on garde l'ancien
-      const updatedList = allBooks.map((b) => (b.id == id ? updatedBook : b))
-      this._saveToCache('all_books', updatedList)
+
+    if (allBooks && Array.isArray(allBooks)) {
+      // On cherche si le livre est présent dans la liste actuelle
+      const exists = allBooks.find((b) => b.id == id)
+
+      if (exists) {
+        // S'il est dedans, on le remplace proprement
+        const updatedList = allBooks.map((b) => (b.id == id ? updatedBook : b))
+        this._saveToCache('all_books', updatedList)
+      }
+      // Si "exists" est faux, on ne fait rien, on ne veut pas polluer le cache
     }
 
     return updatedBook
