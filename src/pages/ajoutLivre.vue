@@ -44,7 +44,7 @@ async function handleSubmit() {
       userId: 1,
     })
     success.value = true
-    setTimeout(() => router.push('/Livres'), 1500)
+    setTimeout(() => router.push('/livres'), 1500)
   } catch (err) {
     error.value = "Erreur lors de l'ajout du livre."
     console.error(err)

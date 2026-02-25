@@ -138,7 +138,20 @@ export default {
       body: JSON.stringify(book),
     })
     if (!response.ok) throw new Error("Échec de l'ajout du livre")
-    return await response.json()
+
+    const newBook = await response.json()
+
+    // On ajoute le livre dans le cache de la liste
+    const cached = this._getFromCache('all_books')
+    if (cached) {
+      cached.push(newBook)
+      this._saveToCache('all_books', cached)
+    }
+
+    // On le cache aussi individuellement
+    this._saveToCache(`book_${newBook.id}`, newBook)
+
+    return newBook
   },
 
   async updateBook(id, bookData) {
