@@ -47,8 +47,7 @@ router.beforeEach((to, from, next) => {
 
   // Si la route demande d'être connecté et que l'utilisateur ne l'est pas
   if (to.matched.some((record) => record.meta.requiresAuth) && !loggedInUser) {
-    // On le redirige vers la page de login
-    next('/login')
+    next({ path: from.path, query: { authRequired: 'true' } })
   } else {
     // Sinon, on le laisse passer
     next()

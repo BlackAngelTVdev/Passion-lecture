@@ -64,7 +64,6 @@ export default defineComponent({
         <p v-if="error" class="error-text" style="color:red">{{ error }}</p>
         
         <div class="login-links">
-          <a href="#">Mot de passe oublié ?</a>
           <a href="#">S'inscrire</a>
         </div>
       </form>

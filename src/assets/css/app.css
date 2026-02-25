@@ -26,7 +26,8 @@ body {
 }
 
 p,
-span {
+span,
+button {
     font-family: 'Bitter', serif;
 }
 
@@ -86,6 +87,8 @@ h1 {
     text-decoration: none;
     border-radius: 15px;
     display: inline-block;
+    border: none; /* Supprime le contour gris/noir par défaut */
+    cursor: pointer; /* Ajoute la main au survol comme sur un lien */
 }
 
 header .Button:last-child {
