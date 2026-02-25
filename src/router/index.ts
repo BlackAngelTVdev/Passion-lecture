@@ -17,7 +17,7 @@ const router = createRouter({
       path: '/livre/:id',
       name: 'LivreDetail',
       component: () => import('../pages/detaillivre.vue'),
-      meta: { requiresAuth: true } 
+      meta: { requiresAuth: true },
     },
     {
       path: '/user/:id',
@@ -29,7 +29,13 @@ const router = createRouter({
       path: '/add',
       name: 'AjoutLivre',
       component: () => import('../pages/ajoutLivre.vue'),
-      meta: { requiresAuth: true}
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/edit/:id',
+      name: 'editLivre',
+      component: () => import('../pages/editLivre.vue'),
+      meta: { requiresAuth: true },
     },
   ],
 })
