@@ -7,10 +7,23 @@
     <nav>
       <router-link to="/add" class="Button">Ajouter</router-link>
       <router-link to="/livres" class="Button">Livres</router-link>
-      <router-link to="/login" class="Button">Login</router-link>
+
+      <button class="Button" @click="showLogin = true">Login</button>
+      <LoginComponent v-if="showLogin" @close="showLogin = false" />
     </nav>
   </header>
 </template>
 <script setup>
 import '@/assets/css/app.css'
+</script>
+<script>
+import LoginComponent from './login.vue'
+export default {
+  components: { LoginComponent },
+  data() {
+    return {
+      showLogin: false
+    }
+  }
+}
 </script>
