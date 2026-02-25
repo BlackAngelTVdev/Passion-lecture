@@ -32,7 +32,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/ajouter',
+      path: '/add',
       name: 'AjoutLivre',
       component: () => import('../pages/ajoutLivre.vue'),
     },

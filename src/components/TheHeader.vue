@@ -5,7 +5,7 @@
       <h1>Passion Lecture</h1>
     </router-link>
     <nav>
-      <router-link to="/ajoute" class="Button">Ajouter</router-link>
+      <router-link to="/add" class="Button">Ajouter</router-link>
       <router-link to="/livres" class="Button">Livres</router-link>
       <router-link to="/login" class="Button">Login</router-link>
     </nav>
