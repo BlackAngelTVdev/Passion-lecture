@@ -1,25 +1,37 @@
 const BASE_URL = 'https://my-json-server.typicode.com/BlackAngelTVdev/Passion-lecture/'
-const CACHE_DURATION = 15 * 60 * 1000 // 15 minutes
+const CACHE_DURATION = 15 * 60 * 1000 // 15 minutes en ms
 
 export default {
-  // --- SYSTÈME DE CACHE INTERNE ---
+  // --- SYSTÈME DE MÉMOIRE LOCALE (CACHE) ---
+
+  // save en local storage avec timestamp pour supp au bon moment
   _saveToCache(key, data) {
     const cacheEntry = {
-      timestamp: Date.now(),
-      payload: data,
+      timestamp: Date.now(), // timestamp
+      payload: data, // donnée
     }
+    // object -> texte pour le localstorage
     localStorage.setItem(key, JSON.stringify(cacheEntry))
   },
 
+  // On récupère la donnée, mais seulement si elle n'est pas trop vieille
   _getFromCache(key) {
+    // regarde si la clef existe
     const cached = localStorage.getItem(key)
+
+    // si y a rien on passe
     if (!cached) return null
 
+    // on separt le timestamp du contenu qui viens de "_saveToCahe"
     const { timestamp, payload } = JSON.parse(cached)
+
+    // calcule si c'est plus que 15min
     if (Date.now() - timestamp > CACHE_DURATION) {
-      localStorage.removeItem(key) // Trop vieux, on supprime
-      return null
+      localStorage.removeItem(key) // on supp
+      return null // et on dis que c'est vide
     }
+
+    // returne l'object si il est pas trop vieux
     return payload
   },
 
