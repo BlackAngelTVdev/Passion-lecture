@@ -38,7 +38,7 @@ onMounted(async () => {
         }
 
         // 3. LA SÉCURITÉ : Admin ou Propriétaire ?
-        const isAdmin = currentUser.role === 'admin'
+        const isAdmin = currentUser.admin
         const isOwner = currentUser.id === book.userId
 
         if (!isAdmin && !isOwner) {
