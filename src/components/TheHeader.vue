@@ -1,3 +1,31 @@
+<script setup>
+import '@/assets/css/app.css'
+</script>
+<script>
+import LoginComponent from './login.vue'
+export default {
+  data() {
+    return {
+      showLogin: false
+    }
+  },
+  watch: {
+    // On surveille les changements de route
+    '$route'(to) {
+      if (to.query.authRequired === 'true') {
+        this.showLogin = true
+      }
+    }
+  },
+  mounted() {
+    // Vérification aussi au chargement initial
+    if (this.$route.query.authRequired === 'true') {
+      this.showLogin = true
+    }
+  }
+}
+</script>
+
 <template>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <header>
@@ -13,17 +41,3 @@
     </nav>
   </header>
 </template>
-<script setup>
-import '@/assets/css/app.css'
-</script>
-<script>
-import LoginComponent from './login.vue'
-export default {
-  components: { LoginComponent },
-  data() {
-    return {
-      showLogin: false
-    }
-  }
-}
-</script>
