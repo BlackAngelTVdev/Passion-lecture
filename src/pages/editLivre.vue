@@ -83,7 +83,6 @@ async function handleUpdate() {
     }
 }
 
-
 const categories = [
     'Fantasy',
     'Science-Fiction',

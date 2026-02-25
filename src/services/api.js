@@ -97,12 +97,19 @@ export default {
 
     const updatedBook = await response.json()
 
-    // Si le serveur n'envoie pas de commentaires, on met une liste vide par défaut
+    // Sécurité comms
     if (!updatedBook.comments) updatedBook.comments = []
 
-    // On update le livre et on vide la liste globale pour rafraîchir
+    // 1. Update du cache spécifique au livre
     this._saveToCache(`book_${id}`, updatedBook)
-    localStorage.removeItem('all_books')
+
+    // 2. UPDATE DE LA LISTE GLOBALE (au lieu de removeItem)
+    const allBooks = this._getFromCache('all_books')
+    if (allBooks) {
+      // On crée une nouvelle liste : si l'id match, on met le livre à jour, sinon on garde l'ancien
+      const updatedList = allBooks.map((b) => (b.id == id ? updatedBook : b))
+      this._saveToCache('all_books', updatedList)
+    }
 
     return updatedBook
   },
