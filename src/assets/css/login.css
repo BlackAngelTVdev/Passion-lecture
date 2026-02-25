@@ -1,0 +1,110 @@
+Container principal pour centrer la modale par-dessus le site
+.login-overlay {
+  position: fixed; /* Reste en place même si on scroll */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Toujours au-dessus de tout le reste */
+}
+
+/* La fenêtre de login (Modale) */
+.login-container {
+  background-color: #fff9e6; /* Jaune très clair selon la maquette */
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: left;
+}
+
+/* Bouton de fermeture (X) */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  color: #c05555;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-family: sans-serif;
+}
+
+/* Groupes de formulaires */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Champs de saisie */
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcc69e;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-sizing: border-box; /* Important pour que le padding ne dépasse pas */
+}
+
+/* Bouton Se Connecter */
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #c05555; /* Rouge brique de la maquette */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #a04444;
+}
+
+/* Liens en bas */
+.login-links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-links a {
+  display: block;
+  color: #c05555;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #c05555;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
