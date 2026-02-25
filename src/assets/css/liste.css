@@ -1,3 +1,9 @@
+.container {
+  background-color: var(--background-color);
+  text-align: center;
+  padding: 60px 20px;
+}
+
 .categorie {
   display: flex;
   justify-content: center;
@@ -29,10 +35,37 @@
   display: grid;
   justify-content: center;
   margin: auto;
+  gap: 50px;
   grid-template-columns: repeat(5, 1fr);
   max-width: 70%;
 }
 
-.book-card {
-  max-width: 200px;
+.book-image {
+  width: 250px;
+  height: 375px;
+  object-fit: cover;
+  border: 2px solid #000;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 20px;
+}
+.title-author {
+  display: block;
+  font-family: 'Bitter', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.user-label {
+  display: block;
+  font-family: 'Bitter', serif;
+  font-size: 0.95rem;
+  color: #555;
+  font-style: italic;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
 }
