@@ -64,6 +64,17 @@ export default {
       nbrate: totalRates,
     }
   },
+  // Ajouter un nouveau livre
+  async addBook(book) {
+    const response = await fetch(`${BASE_URL}/books`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book),
+    })
+    if (!response.ok) throw new Error("Échec de l'ajout du livre")
+    return await response.json()
+  },
+
   async updateBook(id, bookData) {
     const response = await fetch(`${BASE_URL}/books/${id}`, {
       method: 'PUT', // On utilise PUT pour mettre à jour l'objet complet avec les nouveaux comms

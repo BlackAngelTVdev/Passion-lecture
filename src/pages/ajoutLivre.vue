@@ -41,10 +41,6 @@ async function handleSubmit() {
   try {
     await api.addBook({
       ...form.value,
-      published: Number(form.value.published),
-      nbpages: Number(form.value.nbpages),
-      comments: [],
-      rates: [],
       userId: 1,
     })
     success.value = true
@@ -57,6 +53,9 @@ async function handleSubmit() {
   }
 }
 </script>
+<script scoped>
+import '@/assets/css/ajoutLivre.css'
+</script>
 
 <template>
   <div class="ajout-wrapper">
@@ -65,7 +64,6 @@ async function handleSubmit() {
       <p v-if="success" class="ajout-success">Livre ajouté avec succès ! Redirection...</p>
 
       <form @submit.prevent="handleSubmit" class="ajout-form">
-
         <!-- Titre | Auteur -->
         <div class="form-row">
           <div class="form-group">
@@ -101,7 +99,7 @@ async function handleSubmit() {
           </div>
           <div class="form-group">
             <label for="published">Année d'édition</label>
-            <input id="published" v-model="form.published" type="number"/>
+            <input id="published" v-model="form.published" type="number" />
           </div>
         </div>
 
@@ -123,12 +121,7 @@ async function handleSubmit() {
           <div class="form-col-right">
             <div class="form-group">
               <label for="image">Couverture</label>
-              <input
-                id="image"
-                v-model="form.image"
-                type="url"
-                placeholder="URL de l'image"
-              />
+              <input id="image" v-model="form.image" type="url" placeholder="URL de l'image" />
             </div>
 
             <div class="image-preview">
@@ -150,181 +143,4 @@ async function handleSubmit() {
   </div>
 </template>
 
-<style scoped>
-@import '@/assets/css/var.css';
 
-.ajout-wrapper {
-  background-color: var(--background-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem 1rem;
-}
-
-.ajout-container {
-  background: var(--background-color);
-  border: 2px solid var(--bouton-color);
-  border-radius: 4px;
-  padding: 1.5rem 2rem;
-  width: 100%;
-  max-width: 780px;
-}
-
-.ajout-error {
-  background: #fde8e8;
-  color: #c0392b;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-}
-
-.ajout-success {
-  background: #e8f8e8;
-  color: #27ae60;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-}
-
-.ajout-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.form-row-bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  align-items: stretch;
-}
-
-.form-col-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-.form-col-right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  flex: 1;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.form-group label {
-  font-weight: 500;
-  color: var(--text-color);
-  font-size: 0.92rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  border: 1px solid #bbb;
-  border-radius: 0;
-  padding: 0.45rem 0.6rem;
-  font-size: 0.9rem;
-  color: var(--text-color);
-  background: #fff;
-  transition: border-color 0.2s;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--hf-color);
-}
-
-.form-group textarea {
-  resize: vertical;
-}
-
-/* Image preview */
-.image-preview {
-  width: 100%;
-  flex: 1;
-  min-height: 150px;
-  background: #e0d8c8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: 1px solid #bbb;
-}
-
-.image-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.image-placeholder {
-  color: #a08060;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-placeholder svg {
-  width: 48px;
-  height: 48px;
-}
-
-.image-url-input {
-  margin-top: 0.4rem;
-}
-
-/* Boutons */
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.75rem;
-}
-
-.btn-submit {
-  background: var(--bouton-color);
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1.4rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: opacity 0.2s;
-}
-
-.btn-submit:hover:not(:disabled) {
-  opacity: 0.85;
-}
-
-.btn-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-@media (max-width: 600px) {
-  .form-row,
-  .form-row-bottom {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
