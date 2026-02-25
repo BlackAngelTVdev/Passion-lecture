@@ -46,13 +46,20 @@ const closeModal = () => {
     showModal.value = false
     newComment.value = ""
 }
+const getConnectedUserId = () => {
+    const userData = localStorage.getItem('user')
+    if (!userData) return null // Personne n'est connecté
+
+    const user = JSON.parse(userData)
+    return user.id // On récupère l'ID du user stocké
+}
 
 const submitComment = async () => {
     if (newComment.value.trim() === "") return
 
     const commentObj = {
         id: Date.now(),
-        userId: 3,
+        userId: getConnectedUserId(),
         title: newComment.value
     }
 
