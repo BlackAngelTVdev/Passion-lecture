@@ -83,23 +83,25 @@ export default {
     return await response.json()
   },
 
-  // Mise à jour du livre (POST de commentaires)
+  // Mise à jour du livre
   async updateBook(id, bookData) {
-    // 1. On met à jour le cache direct pour que l'UI change instantanément
-    this._saveToCache(`book_${id}`, bookData)
-
-    // On invalide aussi la liste globale pour qu'elle soit refresh
-    localStorage.removeItem('all_books')
-
-    // 2. On fait l'appel fake à l'API
     const response = await fetch(`${BASE_URL}/books/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(bookData),
     })
 
     if (!response.ok) throw new Error('Échec de la sauvegarde')
-    return await response.json()
+
+    const updatedBook = await response.json()
+
+    // On update le livre et on vide la liste globale pour rafraîchir
+    this._saveToCache(`book_${id}`, updatedBook)
+    localStorage.removeItem('all_books')
+
+    return updatedBook
   },
 
   // Récupérer les stats d'un utilisateur
@@ -138,19 +140,6 @@ export default {
       body: JSON.stringify(book),
     })
     if (!response.ok) throw new Error("Échec de l'ajout du livre")
-    return await response.json()
-  },
-
-  async updateBook(id, bookData) {
-    const response = await fetch(`${BASE_URL}/books/${id}`, {
-      method: 'PUT', // On utilise PUT pour mettre à jour l'objet complet avec les nouveaux comms
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(bookData),
-    })
-
-    if (!response.ok) throw new Error('Échec de la sauvegarde')
     return await response.json()
   },
 }
