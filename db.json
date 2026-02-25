@@ -1,12 +1,54 @@
 {
   "user": [
-    { "id": 1, "username": "Damien", "password": "secret123" },
-    { "id": 2, "username": "Gianmacrco", "password": "secret456" },
-    { "id": 3, "username": "Albert", "password": "secret789" },
-    { "id": 4, "username": "Sophie", "password": "secret012" },
-    { "id": 5, "username": "Liam", "password": "secret345" },
-    { "id": 6, "username": "Emma_Dev", "password": "password!2026" },
-    { "id": 7, "username": "Lucas_Sky", "password": "force_user" }
+    {
+      "id": 1,
+      "username": "Damien",
+      "password": "secret123",
+      "admin": true,
+      "createdAt": "2026-01-15"
+    },
+    {
+      "id": 2,
+      "username": "Gianmacrco",
+      "password": "secret456",
+      "admin": true,
+      "createdAt": "2026-01-16"
+    },
+    {
+      "id": 3,
+      "username": "Albert",
+      "password": "secret789",
+      "admin": true,
+      "createdAt": "2026-01-17"
+    },
+    {
+      "id": 4,
+      "username": "Sophie",
+      "password": "secret012",
+      "admin": false,
+      "createdAt": "2026-01-18"
+    },
+    {
+      "id": 5,
+      "username": "Liam",
+      "password": "secret345",
+      "admin": false,
+      "createdAt": "2026-01-19"
+    },
+    {
+      "id": 6,
+      "username": "Emma_Dev",
+      "password": "password!2026",
+      "admin": false,
+      "createdAt": "2026-01-20"
+    },
+    {
+      "id": 7,
+      "username": "Lucas_Sky",
+      "password": "force_user",
+      "admin": false,
+      "createdAt": "2026-01-21"
+    }
   ],
   "books": [
     {
@@ -17,21 +59,16 @@
       "published": 1997,
       "nbpages": 309,
       "editor": "Bloomsbury",
-      "resume": "Un jeune orphelin découvre ses pouvoirs magiques et intègre une école de sorcellerie.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/harry_potter.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/hp.webp",
+      "resume": "Un orphelin intègre une école de sorcellerie.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/harry_potter.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/hp.webp",
       "comments": [
-        { "id": 1, "userId": 2, "title": "Incroyable classique" },
-        { "id": 2, "userId": 7, "title": "J'attends toujours ma lettre" },
-        { "id": 3, "userId": 4, "title": "Un univers riche et prenant." },
-        { "id": 4, "userId": 5, "title": "Le début d'une grande aventure !" }
+        { "id": 1, "userId": 2, "title": "Classique indémodable" },
+        { "id": 2, "userId": 7, "title": "Team Serpentard !" },
+        { "id": 3, "userId": 4, "title": "J'adore l'ambiance." },
+        { "id": 4, "userId": 1, "title": "La base du dev." }
       ],
-      "rates": [
-        { "id": 1, "userId": 2, "value": 5 },
-        { "id": 2, "userId": 7, "value": 4 },
-        { "id": 3, "userId": 4, "value": 5 },
-        { "id": 4, "userId": 5, "value": 5 }
-      ],
+      "rates": [{ "id": 1, "userId": 2, "value": 5 }],
       "userId": 1
     },
     {
@@ -42,19 +79,15 @@
       "published": 1954,
       "nbpages": 1178,
       "editor": "Allen & Unwin",
-      "resume": "Une quête épique pour détruire un anneau maléfique et sauver la Terre du Milieu.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/le_seigneur_des_anneaux.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/Seigneurdesanneax.jpg",
+      "resume": "Détruire un anneau pour sauver la Terre du Milieu.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/le_seigneur_des_anneaux.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/Seigneurdesanneax.jpg",
       "comments": [
-        { "id": 1, "userId": 5, "title": "Un chef-d'œuvre absolu" },
-        { "id": 2, "userId": 1, "title": "Un peu long mais riche" },
-        { "id": 3, "userId": 6, "title": "La worldbuilding est fou." }
+        { "id": 1, "userId": 5, "title": "Chef-d'œuvre absolu" },
+        { "id": 2, "userId": 1, "title": "Riche et épique" },
+        { "id": 3, "userId": 3, "title": "Gandalf le GOAT" }
       ],
-      "rates": [
-        { "id": 1, "userId": 5, "value": 5 },
-        { "id": 2, "userId": 1, "value": 5 },
-        { "id": 3, "userId": 6, "value": 5 }
-      ],
+      "rates": [{ "id": 1, "userId": 5, "value": 5 }],
       "userId": 3
     },
     {
@@ -65,42 +98,32 @@
       "published": 1949,
       "nbpages": 328,
       "editor": "Secker & Warburg",
-      "resume": "Big Brother vous regarde. Une vision terrifiante d'un futur totalitaire.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/1984.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/nineteen-eighty-four-1984-george.jpg",
+      "resume": "Une vision d'un futur totalitaire.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/1984.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/nineteen-eighty-four-1984-george.jpg",
       "comments": [
-        { "id": 1, "userId": 2, "title": "Toujours d'actualité" },
-        { "id": 2, "userId": 7, "title": "Effrayant de réalisme." },
-        { "id": 3, "userId": 3, "title": "Un livre qui change la vision du monde." }
+        { "id": 1, "userId": 2, "title": "Effrayant de réalisme" },
+        { "id": 2, "userId": 6, "title": "À lire d'urgence" }
       ],
-      "rates": [
-        { "id": 1, "userId": 4, "value": 4 },
-        { "id": 2, "userId": 7, "value": 5 },
-        { "id": 3, "userId": 3, "value": 5 }
-      ],
+      "rates": [{ "id": 1, "userId": 4, "value": 4 }],
       "userId": 2
     },
     {
       "id": 4,
       "title": "Le Petit Prince",
-      "author": "Antoine de Saint-Exupéry",
+      "author": "A. de Saint-Exupéry",
       "category": "Conte",
       "published": 1943,
       "nbpages": 96,
       "editor": "Reynal & Hitchcock",
-      "resume": "Un aviateur échoué dans le désert rencontre un jeune prince venu d'une autre planète.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/petit_prince.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/petitprince.jpg",
+      "resume": "Un aviateur rencontre un jeune prince.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/petit_prince.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/petitprince.jpg",
       "comments": [
-        { "id": 1, "userId": 4, "title": "Poétique et triste" },
-        { "id": 2, "userId": 1, "title": "Un classique pour petits et grands." },
-        { "id": 3, "userId": 6, "title": "Une leçon de vie." }
+        { "id": 1, "userId": 4, "title": "Poétique et beau" },
+        { "id": 2, "userId": 5, "title": "Touchant." }
       ],
-      "rates": [
-        { "id": 1, "userId": 1, "value": 5 },
-        { "id": 2, "userId": 4, "value": 5 },
-        { "id": 3, "userId": 6, "value": 4 }
-      ],
+      "rates": [{ "id": 1, "userId": 1, "value": 5 }],
       "userId": 4
     },
     {
@@ -111,13 +134,12 @@
       "published": 1965,
       "nbpages": 612,
       "editor": "Chilton Books",
-      "resume": "L'histoire de Paul Atreides sur la planète désertique Arrakis, entre complots et prophéties.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/dune.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/dune.jpeg",
+      "resume": "L'épopée sur la planète Arrakis.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/dune.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/dune.jpeg",
       "comments": [
-        { "id": 1, "userId": 1, "title": "L'épice doit circuler" },
-        { "id": 2, "userId": 5, "title": "Politique et SF, le mix parfait." },
-        { "id": 3, "userId": 2, "title": "Un peu dur à lire mais ça vaut le coup." }
+        { "id": 1, "userId": 1, "title": "L'épice doit circuler !" },
+        { "id": 2, "userId": 7, "title": "Univers incroyable" }
       ],
       "rates": [{ "id": 1, "userId": 2, "value": 4 }],
       "userId": 1
@@ -130,13 +152,12 @@
       "published": 1980,
       "nbpages": 500,
       "editor": "Grasset",
-      "resume": "En l'an 1327, dans une abbaye bénédictine, des moines disparaissent. Un franciscain mène l'enquête.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/le_nom_de_la_rose.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/lenomdelarose.jpg",
+      "resume": "Enquête dans une abbaye en 1327.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/le_nom_de_la_rose.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/lenomdelarose.jpg",
       "comments": [
-        { "id": 1, "userId": 5, "title": "Une enquête fascinante" },
-        { "id": 2, "userId": 2, "title": "L'ambiance médiévale est top." },
-        { "id": 3, "userId": 7, "title": "Un policier très intelligent." }
+        { "id": 1, "userId": 5, "title": "Fascinant et sombre" },
+        { "id": 2, "userId": 2, "title": "Top pour l'histoire" }
       ],
       "rates": [{ "id": 1, "userId": 3, "value": 4 }],
       "userId": 5
@@ -149,13 +170,12 @@
       "published": 1953,
       "nbpages": 248,
       "editor": "Ballantine Books",
-      "resume": "Dans un futur où les livres sont interdits, les pompiers ont pour mission de les brûler.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/fahrenheit.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/fahrenheit.jpg",
+      "resume": "Les pompiers brûlent les livres.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/fahrenheit.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/fahrenheit.jpg",
       "comments": [
-        { "id": 1, "userId": 2, "title": "Un message puissant" },
-        { "id": 2, "userId": 4, "title": "Vraiment marquant." },
-        { "id": 3, "userId": 1, "title": "À lire absolument." }
+        { "id": 1, "userId": 2, "title": "Message puissant" },
+        { "id": 2, "userId": 1, "title": "Incontournable" }
       ],
       "rates": [{ "id": 1, "userId": 6, "value": 5 }],
       "userId": 2
@@ -167,14 +187,13 @@
       "category": "Fantasy",
       "published": 1937,
       "nbpages": 310,
-      "editor": "George Allen & Unwin",
-      "resume": "Bilbo Bessac est entraîné dans une aventure inattendue par le magicien Gandalf et treize nains.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/le_hobbit.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/hobbit.jpg",
+      "editor": "Allen & Unwin",
+      "resume": "Bilbo est entraîné dans une aventure.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/le_hobbit.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/hobbit.jpg",
       "comments": [
-        { "id": 1, "userId": 3, "title": "Parfait pour s'évader" },
-        { "id": 2, "userId": 7, "title": "Bilbo est super attachant." },
-        { "id": 3, "userId": 5, "title": "Une aventure épique mais légère." }
+        { "id": 1, "userId": 3, "title": "Superbe évasion" },
+        { "id": 2, "userId": 7, "title": "Aventure géniale" }
       ],
       "rates": [{ "id": 1, "userId": 5, "value": 5 }],
       "userId": 3
@@ -187,32 +206,30 @@
       "published": 1951,
       "nbpages": 255,
       "editor": "Gnome Press",
-      "resume": "L'Empire Galactique s'effondre. Le mathématicien Hari Seldon prédit l'âge des ténèbres.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/fondation.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/fondation.jpg",
+      "resume": "Hari Seldon prédit la chute de l'Empire.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/fondation.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/fondation.jpg",
       "comments": [
-        { "id": 1, "userId": 6, "title": "Le pilier de la SF" },
-        { "id": 2, "userId": 3, "title": "Visionnaire." },
-        { "id": 3, "userId": 2, "title": "Un peu daté mais génial." }
+        { "id": 1, "userId": 6, "title": "Pilier de la SF" },
+        { "id": 2, "userId": 3, "title": "Visionnaire" }
       ],
       "rates": [{ "id": 1, "userId": 7, "value": 5 }],
       "userId": 6
     },
     {
       "id": 10,
-      "title": "Le Lion, la Sorcière et l'Armoire magique",
+      "title": "Narnia",
       "author": "C.S. Lewis",
       "category": "Fantasy",
       "published": 1950,
       "nbpages": 208,
       "editor": "Geoffrey Bles",
-      "resume": "Quatre enfants découvrent un monde magique caché au fond d'une armoire.",
-      "extrait": "https://launcher.laxacube.ch/vuejs/pdf/narnia.pdf",
-      "image": "https://launcher.laxacube.ch/vuejs/images/narnia.jpeg",
+      "resume": "Un monde caché dans une armoire.",
+      "extrait": "https://files.laxacube.ch/vuejs/pdf/narnia.pdf",
+      "image": "https://files.laxacube.ch/vuejs/images/narnia.jpeg",
       "comments": [
-        { "id": 1, "userId": 7, "title": "Magique pour tous les âges" },
-        { "id": 2, "userId": 4, "title": "J'adore l'univers de Narnia." },
-        { "id": 3, "userId": 1, "title": "Aslan est impressionnant." }
+        { "id": 1, "userId": 7, "title": "Magique" },
+        { "id": 2, "userId": 4, "title": "Chef-d'œuvre enfance" }
       ],
       "rates": [{ "id": 1, "userId": 2, "value": 4 }],
       "userId": 7
