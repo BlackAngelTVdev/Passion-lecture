@@ -115,7 +115,7 @@ import '@/assets/css/ajoutLivre.css'
             <!-- Résumé de l'ouvrage -->
             <div class="form-group">
               <label for="resume">Résumé de l'ouvrage</label>
-              <textarea id="resume" v-model="form.resume" rows="9"></textarea>
+              <textarea id="resume" v-model="form.resume" rows="13"></textarea>
             </div>
           </div>
 
@@ -125,23 +125,33 @@ import '@/assets/css/ajoutLivre.css'
               <input id="image" v-model="form.image" type="url" placeholder="URL de l'image" />
             </div>
 
-            <div class="image-preview">
-              <img v-if="form.image" :src="form.image" alt="Couverture" />
-              <span v-else class="image-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
-              </span>
+            <div class="preview-publish-row">
+              <div class="image-preview">
+                <img v-if="form.image" :src="form.image" alt="Couverture" />
+                <span v-else class="image-placeholder">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  ></svg>
+                </span>
+              </div>
+              <div class="publish-side">
+                <button
+                  type="button"
+                  class="btn-submit"
+                  :disabled="isLoading"
+                  @click="handleSubmit"
+                >
+                  {{ isLoading ? 'Publication...' : 'Publier' }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </form>
-
-      <div class="form-actions">
-        <button type="button" class="btn-submit" :disabled="isLoading" @click="handleSubmit">
-          {{ isLoading ? 'Publication...' : 'Publier' }}
-        </button>
-      </div>
+      <div class="form-actions"></div>
     </div>
   </div>
 </template>
-
-
