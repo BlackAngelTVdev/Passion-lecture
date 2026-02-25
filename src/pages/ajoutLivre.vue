@@ -40,6 +40,7 @@ async function handleSubmit() {
 
   try {
     await api.addBook({
+      id: Date.now(),
       ...form.value,
       userId: 1,
     })
