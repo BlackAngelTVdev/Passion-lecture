@@ -1,8 +1,11 @@
 # Rapport
-## Introduction 
+
+## Introduction
+
 Notre plateforme est née d'une ambition simple : offrir aux amoureux de la lecture un espace universel pour explorer, partager et évaluer leurs découvertes littéraires. Que vous soyez un lecteur occasionnel ou un bibliophile passionné, notre site vous permet de connecter vos lectures avec celles d'une communauté mondiale, transformant l'acte solitaire de lire en une expérience sociale enrichissante.
 
 ### Des fonctionnalités au service de la passion
+
 Le site s'articule autour de trois piliers interactifs :
 
 **Création et Référencement** : Contribuez à notre base de données en ajoutant vos ouvrages favoris.
@@ -12,6 +15,7 @@ Le site s'articule autour de trois piliers interactifs :
 **Partage Mondial** : Découvrez des pépites littéraires issues de cultures variées et échangez avec des utilisateurs du monde entier.
 
 ### Notre Architecture Technique
+
 Pour garantir une expérience utilisateur fluide et réactive, nous avons fait des choix technologiques modernes :
 
 **Frontend** : Nous utilisons Vue.js, un framework progressif qui nous permet de construire une interface dynamique, rapide et parfaitement adaptée à la navigation sur tous les supports.

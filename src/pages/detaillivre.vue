@@ -159,10 +159,12 @@ import '@/assets/css/detaillivre.css'
 
                         <div class="meta-container">
                             <div class="rating-box">
-                                <span class="rating-value">{{ averageRating }}</span>
-                                <span class="star-main">★</span>
-                                <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
-                                }})</span>
+                                <div><span class="rating-value">{{ averageRating }}</span>
+                                    <span class="star-main">★</span>
+                                    <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
+                                    }})</span>
+                                </div>
+
 
                                 <div class="rating-stars">
                                     <span v-for="star in 5" :key="star" @click="submitRating(star)"
