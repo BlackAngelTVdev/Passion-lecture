@@ -172,4 +172,23 @@ export default {
 
     return newBook
   },
+  // Supprimer un livre
+  async deleteBook(id) {
+    const response = await fetch(`${BASE_URL}/books/${id}`, {
+      method: 'DELETE',
+    })
+
+    if (!response.ok) throw new Error('Échec de la suppression')
+
+    // NETTOYAGE DU CACHE
+    // 1. Supprime le cache individuel du livre
+    localStorage.removeItem(`book_${id}`)
+
+    // 2. Supprime le livre de la liste globale en cache
+    const allBooks = this._getFromCache('all_books')
+    if (allBooks) {
+      const updatedList = allBooks.filter((b) => b.id != id)
+      this._saveToCache('all_books', updatedList)
+    }
+  },
 }

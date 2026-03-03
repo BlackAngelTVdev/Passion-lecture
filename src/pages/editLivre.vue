@@ -101,6 +101,21 @@ async function handleUpdate() {
         isLoading.value = false
     }
 }
+async function handleDelete() {
+    if (!confirm("Es-tu sûr de vouloir supprimer ce livre ?")) return
+
+    isLoading.value = true
+    try {
+        await api.deleteBook(bookId)
+        alert("Livre supprimé avec succès.")
+        router.push('/livres') // Redirection vers la liste
+    } catch (err) {
+        error.value = "Erreur lors de la suppression."
+        console.error(err)
+    } finally {
+        isLoading.value = false
+    }
+}
 
 const categories = [
     'Fantasy',
@@ -196,9 +211,16 @@ import '@/assets/css/ajoutLivre.css'
             </form>
 
             <div class="form-actions">
+                <button type="button" class="btn-submit" style="background-color: #e74c3c;" :disabled="isLoading"
+                    @click="handleDelete">
+                    {{ isLoading ? 'Suppression...' : 'Supprimer' }}
+                </button>
                 <button type="button" class="btn-submit" :disabled="isLoading" @click="handleUpdate">
                     {{ isLoading ? 'Publication...' : 'Publier' }}
                 </button>
+                <router-link :to="`/livre/${bookId}`">
+                    <p>Annulé</p>
+                </router-link>
             </div>
         </div>
     </div>
