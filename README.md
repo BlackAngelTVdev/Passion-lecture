@@ -1,42 +1,19 @@
-# Passion-lecture
+# Rapport
+## Introduction 
+Notre plateforme est née d'une ambition simple : offrir aux amoureux de la lecture un espace universel pour explorer, partager et évaluer leurs découvertes littéraires. Que vous soyez un lecteur occasionnel ou un bibliophile passionné, notre site vous permet de connecter vos lectures avec celles d'une communauté mondiale, transformant l'acte solitaire de lire en une expérience sociale enrichissante.
 
-This template should help get you started developing with Vue 3 in Vite.
+### Des fonctionnalités au service de la passion
+Le site s'articule autour de trois piliers interactifs :
 
-## Recommended IDE Setup
+**Création et Référencement** : Contribuez à notre base de données en ajoutant vos ouvrages favoris.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+**Critiques et Notations** : Exprimez votre avis grâce à un système de notation intuitif et laissez des commentaires détaillés pour guider les autres lecteurs.
 
-## Recommended Browser Setup
+**Partage Mondial** : Découvrez des pépites littéraires issues de cultures variées et échangez avec des utilisateurs du monde entier.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+### Notre Architecture Technique
+Pour garantir une expérience utilisateur fluide et réactive, nous avons fait des choix technologiques modernes :
 
-## Type Support for `.vue` Imports in TS
+**Frontend** : Nous utilisons Vue.js, un framework progressif qui nous permet de construire une interface dynamique, rapide et parfaitement adaptée à la navigation sur tous les supports.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+**Backend (Évolution)** : Actuellement, nos données sont gérées via My JSON Server pour simuler un backend car nous allons le faire lors d'un prochain projet Cette structure nous permet d'affiner l'architecture de nos données tout en développant activement un backend personnalisé plus robuste, capable de supporter une montée en charge importante et de garantir la sécurité de vos échanges.
