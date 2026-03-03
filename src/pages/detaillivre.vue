@@ -21,7 +21,10 @@ const getUserName = (userId) => {
     const user = users.value.find(u => u.id == userId)
     return user ? user.username : `Utilisateur ${userId}`
 }
-
+const totalVotes = computed(() => {
+    if (!book.value || !book.value.rates) return 0
+    return book.value.rates.length
+})
 onMounted(async () => {
     const id = route.params.id
     try {
@@ -141,6 +144,9 @@ import '@/assets/css/detaillivre.css'
                             <div class="rating-box">
                                 <span class="rating-value">{{ averageRating }}</span>
                                 <span class="star-main">★</span>
+
+                                <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
+                                    }})</span>
 
                                 <div class="rating-stars">
                                     <span v-for="star in 5" :key="star" @click="submitRating(star)"
