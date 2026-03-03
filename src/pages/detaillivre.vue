@@ -146,7 +146,7 @@ import '@/assets/css/detaillivre.css'
                                 <span class="star-main">★</span>
 
                                 <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
-                                    }})</span>
+                                }})</span>
 
                                 <div class="rating-stars">
                                     <span v-for="star in 5" :key="star" @click="submitRating(star)"

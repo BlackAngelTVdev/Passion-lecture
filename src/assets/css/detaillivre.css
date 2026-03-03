@@ -226,3 +226,18 @@
     color: #ffcc00;
     /* Étoile jaune quand on survole ou qu'on a voté */
 }
+
+.total-votes {
+    font-size: 0.9rem;
+    color: #666;
+    /* Un gris un peu discret */
+    margin-left: 8px;
+    font-family: sans-serif;
+    /* Pour trancher avec le style Jaro si besoin */
+}
+
+.rating-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
