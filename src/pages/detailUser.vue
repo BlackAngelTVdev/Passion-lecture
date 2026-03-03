@@ -26,7 +26,7 @@ import '@/assets/css/detailUser.css'
             <h1>Profil de {{ user.username }}</h1>
             <div class="meta-data">
                 <p>
-                    Créé le : {{ user.création }} <br>
+                    Créé le : {{ user.createdAt }} <br>
                 </p>
                 <p>
                 Nombre d'ouvrages publiés : {{ user.nblivre }} <br>
