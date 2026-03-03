@@ -34,11 +34,11 @@ const categories = [
 ]
 
 const getConnectedUserId = () => {
-    const userData = localStorage.getItem('user')
-    if (!userData) return null // Personne n'est connecté
+  const userData = localStorage.getItem('user')
+  if (!userData) return null // Personne n'est connecté
 
-    const user = JSON.parse(userData)
-    return user.id // On récupère l'ID du user stocké
+  const user = JSON.parse(userData)
+  return user.id // On récupère l'ID du user stocké
 }
 
 async function handleSubmit() {
@@ -50,7 +50,7 @@ async function handleSubmit() {
     await api.addBook({
       id: Date.now(),
       ...form.value,
-      userId: getConnectedUserId() // On associe le livre à l'utilisateur connecté,
+      userId: getConnectedUserId(), // On associe le livre à l'utilisateur connecté,
     })
     success.value = true
     setTimeout(() => router.push('/livres'), 1500)
@@ -60,6 +60,10 @@ async function handleSubmit() {
   } finally {
     isLoading.value = false
   }
+}
+
+function goBack() {
+  router.back()
 }
 </script>
 <script scoped>
@@ -146,6 +150,7 @@ import '@/assets/css/ajoutLivre.css'
                 </span>
               </div>
               <div class="publish-side">
+                <button class="btn-annuler" @click="goBack">Annuler</button>
                 <button
                   type="button"
                   class="btn-submit"
