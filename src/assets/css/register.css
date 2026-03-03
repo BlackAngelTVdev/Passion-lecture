@@ -1,5 +1,5 @@
 /* Container principal pour centrer la modale par-dessus le site */
-.login-overlay {
+.register-overlay {
   position: fixed; /* Reste en place même si on scroll */
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
 }
 
 /* La fenêtre de login (Modale) */
-.login-container {
+.register-container {
   background-color: #fff9e6; /* Jaune très clair selon la maquette */
   width: 100%;
   max-width: 400px;
@@ -85,12 +85,12 @@ button[type='submit']:hover {
 }
 
 /* Liens en bas */
-.register-links {
+.login-links {
   text-align: center;
   margin-top: 20px;
 }
 
-.register-links a {
+.login-links a {
   display: block;
   color: #c05555;
   text-decoration: none;
@@ -98,7 +98,7 @@ button[type='submit']:hover {
   margin-bottom: 5px;
 }
 
-.register-links a:hover {
+.login-links a:hover {
   text-decoration: underline;
 }
 
