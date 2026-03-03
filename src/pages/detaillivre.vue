@@ -6,25 +6,53 @@ import '@/assets/css/app.css'
 
 const route = useRoute()
 const book = ref(null)
-const users = ref([]) // Pour stocker la liste des users
+const users = ref([])
+const loading = ref(true) // Ajouté pour éviter l'erreur dans le finally
 const showModal = ref(false)
 const newComment = ref("")
+const userRating = ref(0)
 
-// Calcul de la moyenne des notes
-const averageRating = computed(() => {
-    if (!book.value || !book.value.rates || book.value.rates.length === 0) return "N/A"
-    const sum = book.value.rates.reduce((acc, curr) => acc + curr.value, 0)
-    return (sum / book.value.rates.length).toFixed(1)
+// --- LOGIQUE UTILISATEUR ---
+
+const getConnectedUser = () => {
+    const userData = localStorage.getItem('user')
+    return userData ? JSON.parse(userData) : null
+}
+
+const getConnectedUserId = () => {
+    const user = getConnectedUser()
+    return user ? user.id : null
+}
+
+const canEdit = computed(() => {
+    const user = getConnectedUser()
+    if (!user || !book.value) return false
+
+    const isOwner = user.id === book.value.userId
+    const isAdmin = user.admin === true || user.role === 'admin'
+
+    return isOwner || isAdmin
 })
 
 const getUserName = (userId) => {
     const user = users.value.find(u => u.id == userId)
     return user ? user.username : `Utilisateur ${userId}`
 }
-const totalVotes = computed(() => {
-    if (!book.value || !book.value.rates) return 0
-    return book.value.rates.length
+
+// --- LOGIQUE SCORING ---
+
+const averageRating = computed(() => {
+    if (!book.value || !book.value.rates || book.value.rates.length === 0) return "N/A"
+    const sum = book.value.rates.reduce((acc, curr) => acc + curr.value, 0)
+    return (sum / book.value.rates.length).toFixed(1)
 })
+
+const totalVotes = computed(() => {
+    return book.value?.rates?.length || 0
+})
+
+// --- ACTIONS ---
+
 onMounted(async () => {
     const id = route.params.id
     try {
@@ -34,75 +62,28 @@ onMounted(async () => {
         ])
         book.value = bookData
         users.value = usersData
+
+        // Check si l'utilisateur a déjà noté ce livre
+        const userId = getConnectedUserId()
+        if (userId && book.value.rates) {
+            const existingRate = book.value.rates.find(r => r.userId === userId)
+            if (existingRate) userRating.value = existingRate.value
+        }
     } catch (err) {
-        console.error("Erreur :", err)
+        console.error("Erreur de chargement :", err)
     } finally {
         loading.value = false
     }
 })
 
-const openModal = () => {
-    showModal.value = true
-}
-
-const closeModal = () => {
-    showModal.value = false
-    newComment.value = ""
-}
-const getConnectedUserId = () => {
-    const userData = localStorage.getItem('user')
-    if (!userData) return null // Personne n'est connecté
-
-    const user = JSON.parse(userData)
-    return user.id // On récupère l'ID du user stocké
-}
-
-const submitComment = async () => {
-    if (newComment.value.trim() === "") return
-
-    const commentObj = {
-        id: Date.now(),
-        userId: getConnectedUserId(),
-        title: newComment.value
-    }
-
-    // On prépare la mise à jour localement
-    const updatedBook = { ...book.value }
-    if (!updatedBook.comments) updatedBook.comments = []
-    updatedBook.comments.push(commentObj)
-
-    try {
-        // On tente d'envoyer au serveur
-        await api.updateBook(book.value.id, updatedBook)
-
-        // Si ça marche, on met à jour l'affichage
-        book.value = updatedBook
-        closeModal()
-    } catch (err) {
-        // SI ERREUR (Livre inconnu du serveur car ajouté en cache)
-        console.warn("Le serveur ne connaît pas ce livre, on update seulement le cache.")
-
-        // On force quand même la mise à jour locale et dans le cache
-        book.value = updatedBook
-        api._saveToCache(`book_${book.value.id}`, updatedBook)
-
-        closeModal()
-    }
-}
-const userRating = ref(0) // Note sélectionnée par l'utilisateur
-
-// Fonction pour envoyer la note
 const submitRating = async (ratingValue) => {
     const userId = getConnectedUserId()
     if (!userId) return alert("Connecte-toi pour noter !")
 
     const rateObj = { userId, value: ratingValue }
-
-    // On prépare l'objet livre mis à jour
     const updatedBook = { ...book.value }
     if (!updatedBook.rates) updatedBook.rates = []
 
-    // Si l'utilisateur a déjà noté, on remplace sa note, sinon on ajoute
     const existingRateIndex = updatedBook.rates.findIndex(r => r.userId === userId)
     if (existingRateIndex !== -1) {
         updatedBook.rates[existingRateIndex] = rateObj
@@ -115,12 +96,46 @@ const submitRating = async (ratingValue) => {
         book.value = updatedBook
         userRating.value = ratingValue
     } catch (err) {
-        console.warn("Update serveur impossible, refresh du cache local...")
+        console.warn("Update serveur impossible, sauvegarde en cache local...")
         book.value = updatedBook
         api._saveToCache(`book_${book.value.id}`, updatedBook)
     }
 }
+
+const submitComment = async () => {
+    if (newComment.value.trim() === "") return
+    const userId = getConnectedUserId()
+    if (!userId) return alert("Connecte-toi pour commenter !")
+
+    const commentObj = {
+        id: Date.now(),
+        userId: userId,
+        title: newComment.value
+    }
+
+    const updatedBook = { ...book.value }
+    if (!updatedBook.comments) updatedBook.comments = []
+    updatedBook.comments.push(commentObj)
+
+    try {
+        await api.updateBook(book.value.id, updatedBook)
+        book.value = updatedBook
+        closeModal()
+    } catch (err) {
+        console.warn("Serveur injoignable, update cache seulement.")
+        book.value = updatedBook
+        api._saveToCache(`book_${book.value.id}`, updatedBook)
+        closeModal()
+    }
+}
+
+const openModal = () => showModal.value = true
+const closeModal = () => {
+    showModal.value = false
+    newComment.value = ""
+}
 </script>
+
 <script scoped>
 import '@/assets/css/detaillivre.css'
 </script>
@@ -129,7 +144,9 @@ import '@/assets/css/detaillivre.css'
     <div class="app-wrapper">
         <main class="content">
             <div class="container">
-                <div v-if="book" class="book-detail">
+                <div v-if="loading" class="loader">Chargement...</div>
+
+                <div v-else-if="book" class="book-detail">
                     <img :src="book.image || 'https://via.placeholder.com/450x600?text=Lien+Vide'"
                         @error="(e) => { e.target.src = 'https://placehold.co/400x600/red/white?text=Image+Introuvable' }"
                         :alt="book.title">
@@ -144,7 +161,6 @@ import '@/assets/css/detaillivre.css'
                             <div class="rating-box">
                                 <span class="rating-value">{{ averageRating }}</span>
                                 <span class="star-main">★</span>
-
                                 <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
                                 }})</span>
 
@@ -162,25 +178,31 @@ import '@/assets/css/detaillivre.css'
                             </div>
                         </div>
 
-
                         <p class="resume-text">{{ book.resume }}</p>
 
-                        <a :href="book.extrait" target="_blank" class="btn-extrait">Lire un extrait</a>
+                        <div class="extedit">
+                            <a :href="book.extrait" target="_blank" class="btn-extrait">Lire un extrait</a>
+                            <router-link :to="`/edit/${book.id}`" class="edit" v-if="canEdit">
+                                Modifier
+                            </router-link>
+                        </div>
 
                         <div class="comment-section">
                             <div class="header-row">
                                 <h3>Commentaires</h3>
                                 <button @click="openModal" class="category-tag add-tag"
-                                    style="cursor: pointer; border: none;">+
-                                    Ajouter</button>
+                                    style="cursor: pointer; border: none;">
+                                    + Ajouter
+                                </button>
                             </div>
 
-                            <div v-if="book && book.comments && book.comments.length > 0">
+                            <div v-if="book.comments && book.comments.length > 0">
                                 <div v-for="comment in book.comments" :key="comment.id" class="comment-card">
                                     <p><strong>{{ getUserName(comment.userId) }}</strong></p>
                                     <p>{{ comment.title }}</p>
                                 </div>
                             </div>
+                            <p v-else>Pas encore de commentaires...</p>
                         </div>
 
                         <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
@@ -198,6 +220,7 @@ import '@/assets/css/detaillivre.css'
                         </div>
                     </div>
                 </div>
+                <div v-else>Livre introuvable.</div>
             </div>
         </main>
     </div>

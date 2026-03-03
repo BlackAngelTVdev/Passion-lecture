@@ -241,3 +241,17 @@
     align-items: center;
     gap: 5px;
 }
+
+.extedit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit {
+    text-align: center;
+    color: var(--background-color);
+    background-color: var(--bouton-color);
+    height: 50px;
+    padding: 15px;
+    border-radius: 8px;
+}
