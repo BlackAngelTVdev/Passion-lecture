@@ -159,14 +159,10 @@
   margin-top: 0.75rem;
 }
 
-.btn-annuler,
-.btn-submit {
+button {
+  background: var(--bouton-color);
   width: 120px;
   text-align: center;
-}
-
-.btn-submit {
-  background: var(--bouton-color);
   color: #fff;
   border: none;
   padding: 0.6rem 2rem;
@@ -177,38 +173,16 @@
   transition: opacity 0.2s;
 }
 
-.btn-submit:hover:not(:disabled) {
+button:hover:not(:disabled) {
   opacity: 0.85;
 }
 
-.btn-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-annuler {
-  background: var(--bouton-color);
-  color: #fff;
-  border: none;
-  padding: 0.6rem 2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: opacity 0.2s;
-}
-
-.btn-annuler:hover:not(:disabled) {
-  opacity: 0.85;
-}
-
-.btn-annuler:disabled {
+button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 @media (max-width: 600px) {
-
   .form-row,
   .form-row-bottom {
     grid-template-columns: 1fr;

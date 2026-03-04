@@ -150,13 +150,8 @@ import '@/assets/css/ajoutLivre.css'
                 </span>
               </div>
               <div class="publish-side">
-                <button class="btn-annuler" @click="goBack">Annuler</button>
-                <button
-                  type="button"
-                  class="btn-submit"
-                  :disabled="isLoading"
-                  @click="handleSubmit"
-                >
+                <button class="button" @click="goBack">Annuler</button>
+                <button class="button" type="button" :disabled="isLoading" @click="handleSubmit">
                   {{ isLoading ? 'Publication...' : 'Publier' }}
                 </button>
               </div>
