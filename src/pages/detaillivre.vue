@@ -162,7 +162,7 @@ import '@/assets/css/detaillivre.css'
                                 <div><span class="rating-value">{{ averageRating }}</span>
                                     <span class="star-main">★</span>
                                     <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
-                                    }})</span>
+                                        }})</span>
                                 </div>
 
 

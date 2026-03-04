@@ -141,17 +141,17 @@ import '@/assets/css/ajoutLivre.css'
               <div class="image-preview">
                 <img v-if="form.image" :src="form.image" alt="Couverture" />
                 <span v-else class="image-placeholder">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  ></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
                 </span>
               </div>
               <div class="publish-side">
+<<<<<<< HEAD
                 <button class="button" @click="goBack">Annuler</button>
                 <button class="button" type="button" :disabled="isLoading" @click="handleSubmit">
+=======
+                <button class="btn-annuler" @click="goBack">Annuler</button>
+                <button type="button" class="btn-submit" :disabled="isLoading" @click="handleSubmit">
+>>>>>>> 2dc80c1c9b5b42f65686d7993630d650c4988124
                   {{ isLoading ? 'Publication...' : 'Publier' }}
                 </button>
               </div>
