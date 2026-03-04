@@ -14,6 +14,7 @@ import '@/assets/css/app.css'
       <a href="mailto:gianmarco.ruberti@eduvaud.ch" class="footer-link">Gianmarco Ruberti <i
           class="fas fa-envelope"></i></a>
       <a href="mailto:albert.braimi@eduvaud.ch" class="footer-link">Albert Braimi <i class="fas fa-envelope"></i></a>
+
     </div>
   </footer>
 </template>
