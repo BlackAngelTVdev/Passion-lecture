@@ -1,4 +1,4 @@
-## Conclusion de Gianmarco
+**Par : Gianmarco**
 Pour ma part, ce projet a été particulièrement enrichissant. Bien que la séparation technique du frontend et du backend en deux projets distincts m'ait initialement semblé complexe à appréhender, cette expérience m'a permis de mieux comprendre les enjeux d'une architecture découplée. J'ai également noté qu'un cahier des charges (CDC) plus précis aurait été préférable ; cela nous aurait évité de développer certaines fonctionnalités qui, au final, se sont révélées facultatives ou de .
 
 Je tire néanmoins un bilan très positif de cette aventure. Travailler en équipe avec deux camarades a été une excellente expérience, tant sur le plan humain que technique. Ce fut bien plus stimulant que de mener un projet en solitaire. Enfin, ce travail pratique a constitué l'occasion idéale de mettre en application concrète la théorie apprise en amont, consolidant ainsi durablement mes compétences en développement.
