@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import api from '@/services/api'
+import '@/assets/css/ajoutLivre.css'
+import { getConnectedUser } from '@/composables/useAuth'
 
 const router = useRouter()
 const route = useRoute()
@@ -38,8 +40,7 @@ const categories = [
 onMounted(async () => {
   try {
     const book = await api.getBookById(bookId)
-    const userData = localStorage.getItem('user')
-    const currentUser = userData ? JSON.parse(userData) : null
+    const currentUser = getConnectedUser()
 
     if (!currentUser) {
       router.push('/login')
@@ -51,7 +52,7 @@ onMounted(async () => {
 
     if (!isAdmin && !isOwner) {
       alert("Tu n'as pas le droit de modifier ce livre !")
-      router.push({ name: 'Livres'})
+      router.push({ name: 'Livres' })
       return
     }
 
@@ -85,7 +86,7 @@ async function handleUpdate() {
       }
     }
     alert('Modification enregistrée !')
-    router.push({ name: 'LivreDetail', params: { id: book.id } })
+    router.push({ name: 'LivreDetail', params: { id: bookId } })
   } catch (err) {
     error.value = 'Erreur critique lors de la modif.'
   } finally {
@@ -99,7 +100,7 @@ async function handleDelete() {
   try {
     await api.deleteBook(bookId)
     alert('Livre supprimé avec succès.')
-    router.push({ name: 'Livres'})
+    router.push({ name: 'Livres' })
   } catch (err) {
     error.value = 'Erreur lors de la suppression.'
   } finally {

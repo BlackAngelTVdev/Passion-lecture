@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import api from '@/services/api'
+import '@/assets/css/home.css'
 
 
 const books = ref([])
@@ -52,13 +53,15 @@ import '@/assets/css/home.css'
 
             <div class="book-info">
               <span>
-                <router-link :to="{ name: 'LivreDetail', params: { id: book.id } }" class="title-author">{{ book.title }} | {{ book.author
-                }}</router-link>
+                <router-link :to="{ name: 'LivreDetail', params: { id: book.id } }" class="title-author">{{ book.title
+                  }} | {{ book.author
+                  }}</router-link>
 
               </span>
               <span>
-                <router-link :to="{ name: 'UserDetail', params: { id: book.userId } }" class="user-label">Par : {{ getUserName(book.userId)
-                }}</router-link>
+                <router-link :to="{ name: 'UserDetail', params: { id: book.userId } }" class="user-label">Par : {{
+                  getUserName(book.userId)
+                  }}</router-link>
               </span>
             </div>
           </div>

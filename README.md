@@ -176,11 +176,13 @@ Cet exercice de vulgarisation m'a permis de :
 - Renforcer la cohésion : Créer un socle de connaissances commun indispensable à la réussite du groupe.
 
 **Par : Gianmarco**
+
 Pour ma part, ce projet a été particulièrement enrichissant. Bien que la séparation technique du frontend et du backend en deux projets distincts m'ait initialement semblé complexe à appréhender, cette expérience m'a permis de mieux comprendre les enjeux d'une architecture découplée. J'ai également noté qu'un cahier des charges (CDC) plus clair aurait été préférable ; cela nous aurait évité de développer certaines fonctionnalités qui, au final, se sont révélées facultatives.
 
 Je tire néanmoins un bilan très positif de cette aventure. Travailler en équipe avec deux camarades a été une excellente expérience, tant sur le plan humain que technique. Ce fut bien plus stimulant que de mener un projet en solitaire. Enfin, ce travail pratique a constitué l'occasion idéale de mettre en application concrète la théorie apprise en amont, consolidant ainsi durablement mes compétences en développement.
 
 **Par : Albert**
+
 Ma participation à ce projet a été marquée par une absence forcée durant la première semaine en raison d'une mononucléose. À mon retour, les fondations structurelles — notamment les maquettes, la majorité des pages et l'architecture de l'API — étaient déjà posées. Grâce à la pédagogie des membres de mon groupe, qui ont pris le temps de m'expliquer les choix techniques, j'ai pu rapidement m'intégrer au flux de travail et apporter ma touche personnelle au projet, notamment sur les fonctionnalités de connexion et le module d'ajout de livres.
 
 Une réflexion sur l'architecture

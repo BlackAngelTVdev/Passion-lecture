@@ -29,13 +29,13 @@ import '@/assets/css/detailUser.css'
                     Créé le : {{ user.createdAt }} <br>
                 </p>
                 <p>
-                Nombre d'ouvrages publiés : {{ user.nblivre }} <br>
+                    Nombre d'ouvrages publiés : {{ user.nblivre }} <br>
                 </p>
                 <p>
-                Nombre d'appréciations données : {{ user.nbrate }} <br>
+                    Nombre d'appréciations données : {{ user.nbrate }} <br>
                 </p>
                 <p>
-                Nombre de commentaires écrits : {{ user.nbcomm }}
+                    Nombre de commentaires écrits : {{ user.nbcomm }}
                 </p>
             </div>
         </div>

@@ -1,32 +1,14 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
-import api from '@/services/api'
 import '@/assets/css/app.css'
 import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
-
-const books = ref([])
-const users = ref([])
-const error = ref(null)
-
-onMounted(async () => {
-  try {
-    // 2. On récupère les deux listes
-    books.value = await api.getBooks()
-    users.value = await api.getUsers()
-  } catch (err) {
-    error.value = 'Impossible de charger les données.'
-    console.error(err)
-  }
-})
-
 </script>
 
 <template>
   <div class="app-wrapper">
     <TheHeader />
 
-    <main class=main-content>
+    <main class="main-content">
       <router-view />
     </main>
 
