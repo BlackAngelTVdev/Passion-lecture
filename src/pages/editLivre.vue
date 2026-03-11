@@ -181,22 +181,12 @@ import '@/assets/css/ajoutLivre.css'
               <div class="image-preview">
                 <img v-if="form.image" :src="form.image" alt="Couverture" />
                 <span v-else class="image-placeholder">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  ></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
                 </span>
               </div>
 
               <div class="publish-side">
-                <button
-                  type="button"
-                  @click="handleDelete"
-                  :disabled="isLoading"
-                  style="width: 100%"
-                >
+                <button type="button" @click="handleDelete" :disabled="isLoading" style="width: 100%">
                   {{ isLoading ? '...' : 'Supprimer' }}
                 </button>
 

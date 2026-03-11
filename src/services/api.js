@@ -1,4 +1,4 @@
-const BASE_URL = 'https://my-json-server.typicode.com/BlackAngelTVdev/Passion-lecture/'
+const BASE_URL = 'https://my-json-server.typicode.com/BlackAngelTVdev/Passion-lecture'
 const CACHE_DURATION = 15 * 60 * 1000 // 15 minutes en ms
 
 export default {
