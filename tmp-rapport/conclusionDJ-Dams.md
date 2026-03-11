@@ -12,6 +12,6 @@ L'absence d'Albert pendant la permière semaine a finalement été une opportuni
 
 Cet exercice de vulgarisation m'a permis de :
 
-- Valider mes acquis
-- Prendre du recul
-- Renforcer la cohésion
+- Valider mes acquis : Transmettre le savoir confirme la maîtrise technique.
+- Prendre du recul : Observer mon code via un regard extérieur pour en valider la structure.
+- Renforcer la cohésion : Créer un socle de connaissances commun indispensable à la réussite du groupe.
