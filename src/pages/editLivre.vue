@@ -51,7 +51,7 @@ onMounted(async () => {
 
     if (!isAdmin && !isOwner) {
       alert("Tu n'as pas le droit de modifier ce livre !")
-      router.push('/livres')
+      router.push({ name: 'Livres'})
       return
     }
 
@@ -85,7 +85,7 @@ async function handleUpdate() {
       }
     }
     alert('Modification enregistrée !')
-    router.push(`/livre/${bookId}`)
+    router.push({ name: 'LivreDetail', params: { id: book.id } })
   } catch (err) {
     error.value = 'Erreur critique lors de la modif.'
   } finally {
@@ -99,7 +99,7 @@ async function handleDelete() {
   try {
     await api.deleteBook(bookId)
     alert('Livre supprimé avec succès.')
-    router.push('/livres')
+    router.push({ name: 'Livres'})
   } catch (err) {
     error.value = 'Erreur lors de la suppression.'
   } finally {

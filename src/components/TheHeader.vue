@@ -34,8 +34,8 @@ export default {
       <h1>Passion Lecture</h1>
     </router-link>
     <nav>
-      <router-link to="/add" class="Button">Ajouter</router-link>
-      <router-link to="/livres" class="Button">Livres</router-link>
+      <router-link :to="{ name: 'AjoutLivre' }" class="Button">Ajouter</router-link>
+      <router-link :to="{ name: 'Livres' }" class="Button">Livres</router-link>
 
       <button class="Button" @click="showLogin = true">Login</button>
       <LoginComponent v-if="showLogin" @close="showLogin = false"

@@ -184,7 +184,7 @@ import '@/assets/css/detaillivre.css'
 
                         <div class="extedit">
                             <a :href="book.extrait" target="_blank" class="btn-extrait">Lire un extrait</a>
-                            <router-link :to="`/edit/${book.id}`" class="edit" v-if="canEdit">
+                            <router-link :to="{ name: 'editLivre', params: { id: book.id } }" class="edit" v-if="canEdit">
                                 Modifier
                             </router-link>
                         </div>

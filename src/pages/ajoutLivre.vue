@@ -53,7 +53,7 @@ async function handleSubmit() {
       userId: getConnectedUserId(), // On associe le livre à l'utilisateur connecté,
     })
     success.value = true
-    setTimeout(() => router.push('/livres'), 1500)
+    setTimeout(() => router.push({ name: 'Livres'}), 1500)
   } catch (err) {
     error.value = "Erreur lors de l'ajout du livre."
     console.error(err)
