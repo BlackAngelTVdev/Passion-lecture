@@ -2,34 +2,25 @@
 import { useRoute } from 'vue-router'
 import { onMounted, ref, computed } from 'vue'
 import api from '@/services/api'
-import '@/assets/css/app.css'
+import '@/assets/css/detaillivre.css'
+import { getConnectedUser, getConnectedUserId } from '@/composables/useAuth'
 
 const route = useRoute()
 const book = ref(null)
 const users = ref([])
-const loading = ref(true) // Ajouté pour éviter l'erreur dans le finally
+const loading = ref(true)
 const showModal = ref(false)
-const newComment = ref("")
+const newComment = ref('')
 const userRating = ref(0)
 
 // --- LOGIQUE UTILISATEUR ---
-
-const getConnectedUser = () => {
-    const userData = localStorage.getItem('user')
-    return userData ? JSON.parse(userData) : null
-}
-
-const getConnectedUserId = () => {
-    const user = getConnectedUser()
-    return user ? user.id : null
-}
 
 const canEdit = computed(() => {
     const user = getConnectedUser()
     if (!user || !book.value) return false
 
     const isOwner = user.id === book.value.userId
-    const isAdmin = user.admin === true || user.role === 'admin'
+    const isAdmin = user.admin === true
 
     return isOwner || isAdmin
 })
@@ -162,7 +153,7 @@ import '@/assets/css/detaillivre.css'
                                 <div><span class="rating-value">{{ averageRating }}</span>
                                     <span class="star-main">★</span>
                                     <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
-                                        }})</span>
+                                    }})</span>
                                 </div>
 
 
@@ -184,7 +175,8 @@ import '@/assets/css/detaillivre.css'
 
                         <div class="extedit">
                             <a :href="book.extrait" target="_blank" class="btn-extrait">Lire un extrait</a>
-                            <router-link :to="{ name: 'editLivre', params: { id: book.id } }" class="edit" v-if="canEdit">
+                            <router-link :to="{ name: 'EditLivre', params: { id: book.id } }" class="edit"
+                                v-if="canEdit">
                                 Modifier
                             </router-link>
                         </div>

@@ -14,9 +14,21 @@ const router = createRouter({
       component: () => import('../pages/liste.vue'),
     },
     {
+      path: '/books/add',
+      name: 'AjoutLivre',
+      component: () => import('../pages/ajoutLivre.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/books/:id',
       name: 'LivreDetail',
       component: () => import('../pages/detaillivre.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/books/:id/edit',
+      name: 'EditLivre',
+      component: () => import('../pages/editLivre.vue'),
       meta: { requiresAuth: true },
     },
     {
@@ -24,19 +36,7 @@ const router = createRouter({
       name: 'UserDetail',
       component: () => import('../pages/detailUser.vue'),
       meta: { requiresAuth: true },
-    },
-    {
-      path: '/books/add',
-      name: 'AjoutLivre',
-      component: () => import('../pages/ajoutLivre.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/books/:id/edit',
-      name: 'editLivre',
-      component: () => import('../pages/editLivre.vue'),
-      meta: { requiresAuth: true },
-    },
+    }
   ],
 })
 

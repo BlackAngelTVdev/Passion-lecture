@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '@/services/api'
+import '@/assets/css/ajoutLivre.css'
+import { getConnectedUserId } from '@/composables/useAuth'
 
 const router = useRouter()
 
@@ -33,14 +35,6 @@ const categories = [
   'Autre',
 ]
 
-const getConnectedUserId = () => {
-  const userData = localStorage.getItem('user')
-  if (!userData) return null // Personne n'est connecté
-
-  const user = JSON.parse(userData)
-  return user.id // On récupère l'ID du user stocké
-}
-
 async function handleSubmit() {
   error.value = null
   success.value = false
@@ -53,7 +47,7 @@ async function handleSubmit() {
       userId: getConnectedUserId(), // On associe le livre à l'utilisateur connecté,
     })
     success.value = true
-    setTimeout(() => router.push({ name: 'Livres'}), 1500)
+    setTimeout(() => router.push({ name: 'Livres' }), 1500)
   } catch (err) {
     error.value = "Erreur lors de l'ajout du livre."
     console.error(err)
@@ -141,12 +135,7 @@ import '@/assets/css/ajoutLivre.css'
               <div class="image-preview">
                 <img v-if="form.image" :src="form.image" alt="Couverture" />
                 <span v-else class="image-placeholder">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  ></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
                 </span>
               </div>
               <div class="publish-side">
