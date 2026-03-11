@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '@/services/api'
-import '@/assets/css/ajoutLivre.css'
+import '@/assets/css/addBook.css'
 import { getConnectedUserId } from '@/composables/useAuth'
 
 const router = useRouter()
@@ -47,7 +47,7 @@ async function handleSubmit() {
       userId: getConnectedUserId(), // On associe le livre à l'utilisateur connecté,
     })
     success.value = true
-    setTimeout(() => router.push({ name: 'Livres' }), 1500)
+    setTimeout(() => router.push({ name: 'Books' }), 1500)
   } catch (err) {
     error.value = "Erreur lors de l'ajout du livre."
     console.error(err)
@@ -61,16 +61,16 @@ function goBack() {
 }
 </script>
 <script scoped>
-import '@/assets/css/ajoutLivre.css'
+import '@/assets/css/addBook.css'
 </script>
 
 <template>
-  <div class="ajout-wrapper">
-    <div class="ajout-container">
-      <p v-if="error" class="ajout-error">{{ error }}</p>
-      <p v-if="success" class="ajout-success">Livre ajouté avec succès ! Redirection...</p>
+  <div class="add-wrapper">
+    <div class="add-container">
+      <p v-if="error" class="add-error">{{ error }}</p>
+      <p v-if="success" class="add-success">Livre ajouté avec succès ! Redirection...</p>
 
-      <form @submit.prevent="handleSubmit" class="ajout-form">
+      <form @submit.prevent="handleSubmit" class="add-form">
         <!-- Titre | Auteur -->
         <div class="form-row">
           <div class="form-group">
@@ -135,7 +135,12 @@ import '@/assets/css/ajoutLivre.css'
               <div class="image-preview">
                 <img v-if="form.image" :src="form.image" alt="Couverture" />
                 <span v-else class="image-placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  ></svg>
                 </span>
               </div>
               <div class="publish-side">

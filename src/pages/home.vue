@@ -3,7 +3,6 @@ import { ref, onMounted, computed } from 'vue'
 import api from '@/services/api'
 import '@/assets/css/home.css'
 
-
 const books = ref([])
 const users = ref([])
 const error = ref(null)
@@ -41,8 +40,8 @@ import '@/assets/css/home.css'
         <h2 class="main-title">Un endroit pour vos livres</h2>
         <p class="main-subtitle">
           Plongez dans votre bibliothèque numérique personnelle. Explorez nos derniers titres,
-          consultez les résumés et survolez les extraits en un instant.
-          Notez vos lectures et partagez vos coups de cœur avec la communauté!
+          consultez les résumés et survolez les extraits en un instant. Notez vos lectures et
+          partagez vos coups de cœur avec la communauté!
         </p>
 
         <p v-if="error" class="error">{{ error }}</p>
@@ -53,15 +52,18 @@ import '@/assets/css/home.css'
 
             <div class="book-info">
               <span>
-                <router-link :to="{ name: 'LivreDetail', params: { id: book.id } }" class="title-author">{{ book.title
-                  }} | {{ book.author
-                  }}</router-link>
-
+                <router-link
+                  :to="{ name: 'BookDetail', params: { id: book.id } }"
+                  class="title-author"
+                  >{{ book.title }} | {{ book.author }}</router-link
+                >
               </span>
               <span>
-                <router-link :to="{ name: 'UserDetail', params: { id: book.userId } }" class="user-label">Par : {{
-                  getUserName(book.userId)
-                  }}</router-link>
+                <router-link
+                  :to="{ name: 'UserDetail', params: { id: book.userId } }"
+                  class="user-label"
+                  >Par : {{ getUserName(book.userId) }}</router-link
+                >
               </span>
             </div>
           </div>

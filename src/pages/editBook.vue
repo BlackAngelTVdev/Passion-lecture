@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import api from '@/services/api'
-import '@/assets/css/ajoutLivre.css'
+import '@/assets/css/addBook.css'
 import { getConnectedUser } from '@/composables/useAuth'
 
 const router = useRouter()
@@ -52,7 +52,7 @@ onMounted(async () => {
 
     if (!isAdmin && !isOwner) {
       alert("Tu n'as pas le droit de modifier ce livre !")
-      router.push({ name: 'Livres' })
+      router.push({ name: 'Books' })
       return
     }
 
@@ -86,7 +86,7 @@ async function handleUpdate() {
       }
     }
     alert('Modification enregistrée !')
-    router.push({ name: 'LivreDetail', params: { id: bookId } })
+    router.push({ name: 'BookDetail', params: { id: bookId } })
   } catch (err) {
     error.value = 'Erreur critique lors de la modif.'
   } finally {
@@ -100,7 +100,7 @@ async function handleDelete() {
   try {
     await api.deleteBook(bookId)
     alert('Livre supprimé avec succès.')
-    router.push({ name: 'Livres' })
+    router.push({ name: 'Books' })
   } catch (err) {
     error.value = 'Erreur lors de la suppression.'
   } finally {
@@ -114,15 +114,15 @@ function goBack() {
 </script>
 
 <script scoped>
-import '@/assets/css/ajoutLivre.css'
+import '@/assets/css/addBook.css'
 </script>
 
 <template>
-  <div class="ajout-wrapper">
-    <div class="ajout-container">
-      <p v-if="error" class="ajout-error">{{ error }}</p>
+  <div class="add-wrapper">
+    <div class="add-container">
+      <p v-if="error" class="add-error">{{ error }}</p>
 
-      <form @submit.prevent="handleUpdate" class="ajout-form">
+      <form @submit.prevent="handleUpdate" class="add-form">
         <div class="form-row">
           <div class="form-group">
             <label for="title">Titre</label>
@@ -182,12 +182,22 @@ import '@/assets/css/ajoutLivre.css'
               <div class="image-preview">
                 <img v-if="form.image" :src="form.image" alt="Couverture" />
                 <span v-else class="image-placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  ></svg>
                 </span>
               </div>
 
               <div class="publish-side">
-                <button type="button" @click="handleDelete" :disabled="isLoading" style="width: 100%">
+                <button
+                  type="button"
+                  @click="handleDelete"
+                  :disabled="isLoading"
+                  style="width: 100%"
+                >
                   {{ isLoading ? '...' : 'Supprimer' }}
                 </button>
 

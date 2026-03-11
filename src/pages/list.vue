@@ -2,14 +2,13 @@
 import { ref, onMounted, computed } from 'vue'
 import api from '@/services/api'
 
-
 const books = ref([])
 const users = ref([])
 const error = ref(null)
 const selectedCategory = ref('Tous')
 
 const categories = computed(() => {
-  const allCategories = books.value.map(book => book.category)
+  const allCategories = books.value.map((book) => book.category)
 
   const uniqueCategories = [...new Set(allCategories)]
 
@@ -20,7 +19,7 @@ const filteredBooks = computed(() => {
   if (selectedCategory.value === 'Tous') {
     return books.value
   }
-  return books.value.filter(book => book.category === selectedCategory.value)
+  return books.value.filter((book) => book.category === selectedCategory.value)
 })
 
 onMounted(async () => {
@@ -42,22 +41,24 @@ const getUserName = (userId) => {
 }
 </script>
 <script scoped>
-import '@/assets/css/liste.css'
+import '@/assets/css/list.css'
 </script>
 
 <template>
   <div class="app-wrapper">
-
     <main class="content">
       <div class="categorie">
-        <button v-for="cat in categories" :key="cat" @click="selectedCategory = cat"
-          :class="{ active: selectedCategory === cat }">
+        <button
+          v-for="cat in categories"
+          :key="cat"
+          @click="selectedCategory = cat"
+          :class="{ active: selectedCategory === cat }"
+        >
           {{ cat }}
         </button>
       </div>
 
       <div class="container">
-
         <p v-if="error" class="error">{{ error }}</p>
 
         <div v-else class="book-grid">
@@ -66,14 +67,18 @@ import '@/assets/css/liste.css'
 
             <div class="book-info">
               <span>
-                <router-link :to="{ name: 'LivreDetail', params: { id: book.id } }" class="title-author">{{ book.title
-                }} | {{ book.author
-                  }}</router-link>
+                <router-link
+                  :to="{ name: 'BookDetail', params: { id: book.id } }"
+                  class="title-author"
+                  >{{ book.title }} | {{ book.author }}</router-link
+                >
               </span>
               <span>
-                <router-link :to="{ name: 'UserDetail', params: { id: book.userId } }" class="user-label">Par : {{
-                  getUserName(book.userId)
-                }}</router-link>
+                <router-link
+                  :to="{ name: 'UserDetail', params: { id: book.userId } }"
+                  class="user-label"
+                  >Par : {{ getUserName(book.userId) }}</router-link
+                >
               </span>
             </div>
           </div>
