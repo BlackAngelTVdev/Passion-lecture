@@ -8,7 +8,7 @@ Ce projet a été un véritable apprentissage. Bien que j'aie énormément progr
 
 ## Collaboration et transmission
 
-L'absence d'Albert pendant deux semaines a finalement été une opportunité pédagogique. Pour le remettre à niveau, nous avons dû lui expliquer en détail l'intégralité de l'architecture et les choix techniques effectués.
+L'absence d'Albert pendant la permière semaine a finalement été une opportunité pédagogique. Pour le remettre à niveau, nous avons dû lui expliquer en détail l'intégralité de l'architecture et les choix techniques effectués.
 
 Cet exercice de vulgarisation m'a permis de :
 
