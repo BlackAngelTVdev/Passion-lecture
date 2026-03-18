@@ -16,9 +16,6 @@ onMounted(async () => {
     }
 })
 </script>
-<script scoped>
-import '@/assets/css/userDetail.css'
-</script>
 
 <template>
     <div class="app-wrapper" v-if="user">
@@ -41,3 +38,5 @@ import '@/assets/css/userDetail.css'
         </div>
     </div>
 </template>
+
+<style scoped src="@/assets/css/userDetail.css"></style>

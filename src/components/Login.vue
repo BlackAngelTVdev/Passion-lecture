@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import api from '@/services/api'
 import '@/assets/css/login.css'
 
@@ -11,6 +12,7 @@ const emit = defineEmits<{
 const username = ref('')
 const password = ref('')
 const error = ref<string | null>(null)
+const router = useRouter()
 
 async function handleLogin() {
   error.value = null
@@ -24,7 +26,7 @@ async function handleLogin() {
     if (foundUser) {
       localStorage.setItem('user', JSON.stringify(foundUser))
       emit('close')
-      window.location.reload()
+      router.push('/')
     } else {
       error.value = 'Identifiants incorrects'
     }

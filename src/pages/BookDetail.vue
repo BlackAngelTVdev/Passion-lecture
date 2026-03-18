@@ -126,10 +126,6 @@ const closeModal = () => {
 }
 </script>
 
-<script scoped>
-import '@/assets/css/bookDetail.css'
-</script>
-
 <template>
     <div class="app-wrapper">
         <main class="content">
@@ -218,3 +214,5 @@ import '@/assets/css/bookDetail.css'
         </main>
     </div>
 </template>
+
+<style scoped src="@/assets/css/bookDetail.css"></style>

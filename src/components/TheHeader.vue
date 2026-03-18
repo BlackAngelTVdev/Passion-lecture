@@ -1,9 +1,8 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import '@/assets/css/app.css'
-import LoginComponent from './login.vue'
-import RegisterComponent from './register.vue'
+import LoginComponent from './Login.vue'
+import RegisterComponent from './Register.vue'
 
 const route = useRoute()
 const showLogin = ref(false)

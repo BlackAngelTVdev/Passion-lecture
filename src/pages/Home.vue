@@ -1,25 +1,18 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import api from '@/services/api'
-import { useSelectCategory } from '@/composables/selectCategory'
 
 const books = ref([])
 const users = ref([])
 const error = ref(null)
-const selectedCategory = ref('Tous')
 
-const { categories } = useSelectCategory(books, false)
-
-const filteredBooks = computed(() => {
-  if (selectedCategory.value === 'Tous') {
-    return books.value
-  }
-  return books.value.filter((book) => book.category === selectedCategory.value)
+const latestBooks = computed(() => {
+  return books.value.slice(-5).reverse()
 })
 
 onMounted(async () => {
   try {
-    // On récupère les deux listes
+    // 2. On récupère les deux listes
     books.value = await api.getBooks()
     users.value = await api.getUsers()
   } catch (err) {
@@ -28,36 +21,29 @@ onMounted(async () => {
   }
 })
 
-// La fonction de recherche qui utilise users.value
+// 3. La fonction de recherche qui utilise users.value
 const getUserName = (userId) => {
   if (!users.value.length) return 'Chargement...'
   const userFound = users.value.find((u) => u.id === userId)
   return userFound ? userFound.username : 'Inconnu'
 }
 </script>
-<script scoped>
-import '@/assets/css/list.css'
-</script>
 
 <template>
   <div class="app-wrapper">
     <main class="content">
-      <div class="categorie">
-        <button
-          v-for="cat in categories"
-          :key="cat"
-          @click="selectedCategory = cat"
-          :class="{ active: selectedCategory === cat }"
-        >
-          {{ cat }}
-        </button>
-      </div>
-
       <div class="container">
+        <h2 class="main-title">Un endroit pour vos livres</h2>
+        <p class="main-subtitle">
+          Plongez dans votre bibliothèque numérique personnelle. Explorez nos derniers titres,
+          consultez les résumés et survolez les extraits en un instant. Notez vos lectures et
+          partagez vos coups de cœur avec la communauté!
+        </p>
+
         <p v-if="error" class="error">{{ error }}</p>
 
         <div v-else class="book-grid">
-          <div v-for="book in filteredBooks" :key="book.id" class="book-card">
+          <div v-for="book in latestBooks" :key="book.id" class="book-card">
             <img :src="book.image" :alt="book.title" class="book-image" />
 
             <div class="book-info">
@@ -82,3 +68,5 @@ import '@/assets/css/list.css'
     </main>
   </div>
 </template>
+
+<style scoped src="@/assets/css/home.css"></style>
