@@ -28,7 +28,7 @@ export const useSelectCategory = (books?: Ref<Book[]>, useDefaults: boolean = tr
     'Biographie',
     'Conte',
     'Dystopie',
-    'Autre'
+    'Autre',
   ]
 
   const categories = computed(() => {
@@ -50,6 +50,6 @@ export const useSelectCategory = (books?: Ref<Book[]>, useDefaults: boolean = tr
   })
 
   return {
-    categories
+    categories,
   }
 }

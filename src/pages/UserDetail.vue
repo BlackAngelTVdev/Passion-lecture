@@ -1,10 +1,23 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import api from '@/services/api'
 
 const route = useRoute()
 const user = ref(null)
+
+const formatDate = (dateString) => {
+    const date = new Date(dateString)
+    return new Intl.DateTimeFormat('fr-FR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    }).format(date)
+}
+
+const formattedDate = computed(() => {
+    return user.value ? formatDate(user.value.createdAt) : ''
+})
 
 onMounted(async () => {
     const id = route.params.id
@@ -23,7 +36,7 @@ onMounted(async () => {
             <h1>Profil de {{ user.username }}</h1>
             <div class="meta-data">
                 <p>
-                    Créé le : {{ user.createdAt }} <br>
+                    Créé le : {{ formattedDate }} <br>
                 </p>
                 <p>
                     Nombre d'ouvrages publiés : {{ user.nblivre }} <br>
