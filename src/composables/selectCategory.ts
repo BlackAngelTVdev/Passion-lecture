@@ -16,7 +16,7 @@ interface Book {
   userId: number
 }
 
-export const useSelectCategory = (books?: Ref<Book[]>) => {
+export const useSelectCategory = (books?: Ref<Book[]>, useDefaults: boolean = true) => {
   const defaultCategories = [
     'Fantasy',
     'Science-Fiction',
@@ -33,13 +33,20 @@ export const useSelectCategory = (books?: Ref<Book[]>) => {
 
   const categories = computed(() => {
     if (!books?.value || books.value.length === 0) {
-      return ['Tous', ...defaultCategories]
+      return useDefaults ? ['Tous', ...defaultCategories] : ['Tous']
     }
 
     const allCategories = books.value.map((book) => book.category)
-    const uniqueCategories = Array.from(new Set([...defaultCategories, ...allCategories]))
+    const uniqueCategories = Array.from(new Set(allCategories))
 
-    return ['Tous', ...uniqueCategories.sort()]
+    if (useDefaults) {
+      // Fusion avec les catégories par défaut
+      const mergedCategories = Array.from(new Set([...defaultCategories, ...uniqueCategories]))
+      return ['Tous', ...mergedCategories.sort()]
+    } else {
+      // Uniquement les catégories des livres existants
+      return ['Tous', ...uniqueCategories.sort()]
+    }
   })
 
   return {
