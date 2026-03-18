@@ -1,11 +1,17 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '@/services/api'
 import '@/assets/css/addBook.css'
 import { getConnectedUserId } from '@/composables/useAuth'
+import { useSelectCategory } from '@/composables/selectCategory'
+import { useSelectEditeur } from '@/composables/selectEditeur'
 
 const router = useRouter()
+
+const books = ref([])
+const { categories } = useSelectCategory(books)
+const { editeurs } = useSelectEditeur(books)
 
 const form = ref({
   title: '',
@@ -23,17 +29,13 @@ const error = ref(null)
 const success = ref(false)
 const isLoading = ref(false)
 
-const categories = [
-  'Fantasy',
-  'Science-Fiction',
-  'Romance',
-  'Thriller',
-  'Policier',
-  'Horreur',
-  'Historique',
-  'Biographie',
-  'Autre',
-]
+onMounted(async () => {
+  try {
+    books.value = await api.getBooks()
+  } catch (err) {
+    console.error('Erreur lors du chargement des livres:', err)
+  }
+})
 
 async function handleSubmit() {
   error.value = null
@@ -88,13 +90,16 @@ import '@/assets/css/addBook.css'
           <div class="form-group">
             <label for="category">Catégorie</label>
             <select id="category" v-model="form.category" required>
-              <option value="" disabled></option>
-              <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+              <option value="" disabled>Sélectionner une catégorie</option>
+              <option v-for="cat in categories.slice(1)" :key="cat" :value="cat">{{ cat }}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="editor">Éditeur</label>
-            <input id="editor" v-model="form.editor" type="text" />
+            <select id="editor" v-model="form.editor">
+              <option value="" disabled>Sélectionner un éditeur</option>
+              <option v-for="editeur in editeurs.slice(1)" :key="editeur" :value="editeur">{{ editeur }}</option>
+            </select>
           </div>
         </div>
 

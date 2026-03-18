@@ -1,19 +1,14 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import api from '@/services/api'
+import { useSelectCategory } from '@/composables/selectCategory'
 
 const books = ref([])
 const users = ref([])
 const error = ref(null)
 const selectedCategory = ref('Tous')
 
-const categories = computed(() => {
-  const allCategories = books.value.map((book) => book.category)
-
-  const uniqueCategories = [...new Set(allCategories)]
-
-  return ['Tous', ...uniqueCategories.sort()]
-})
+const { categories } = useSelectCategory(books, false)
 
 const filteredBooks = computed(() => {
   if (selectedCategory.value === 'Tous') {
