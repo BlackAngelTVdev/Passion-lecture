@@ -2,7 +2,6 @@
 import { useRoute } from 'vue-router'
 import { onMounted, ref, computed } from 'vue'
 import api from '@/services/api'
-import '@/assets/css/detaillivre.css'
 import { getConnectedUser, getConnectedUserId } from '@/composables/useAuth'
 
 const route = useRoute()
@@ -128,7 +127,7 @@ const closeModal = () => {
 </script>
 
 <script scoped>
-import '@/assets/css/detaillivre.css'
+import '@/assets/css/bookDetail.css'
 </script>
 
 <template>
@@ -153,7 +152,7 @@ import '@/assets/css/detaillivre.css'
                                 <div><span class="rating-value">{{ averageRating }}</span>
                                     <span class="star-main">★</span>
                                     <span class="total-votes">({{ totalVotes }} {{ totalVotes > 1 ? 'avis' : 'avis'
-                                    }})</span>
+                                        }})</span>
                                 </div>
 
 
@@ -175,7 +174,7 @@ import '@/assets/css/detaillivre.css'
 
                         <div class="extedit">
                             <a :href="book.extrait" target="_blank" class="btn-extrait">Lire un extrait</a>
-                            <router-link :to="{ name: 'EditLivre', params: { id: book.id } }" class="edit"
+                            <router-link :to="{ name: 'EditBook', params: { id: book.id } }" class="edit"
                                 v-if="canEdit">
                                 Modifier
                             </router-link>

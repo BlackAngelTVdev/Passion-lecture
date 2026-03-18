@@ -35,15 +35,13 @@ export default {
     return payload
   },
 
-  // --- MÉTHODES API ---
-
   // Récupérer tous les livres (avec cache)
   async getBooks() {
     const cached = this._getFromCache('all_books')
     if (cached) return cached
 
     const response = await fetch(`${BASE_URL}/books`)
-    if (!response.ok) throw new Error('Erreur réseau')
+    if (!response.ok) throw new Error('Erreur de connexion')
     const data = await response.json()
 
     this._saveToCache('all_books', data)
@@ -56,7 +54,7 @@ export default {
     if (cached) return cached
 
     const response = await fetch(`${BASE_URL}/user`)
-    if (!response.ok) throw new Error('Erreur réseau lors de la récupération des users')
+    if (!response.ok) throw new Error('Erreur de connexion')
     const data = await response.json()
 
     this._saveToCache('all_users', data)

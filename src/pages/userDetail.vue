@@ -17,7 +17,7 @@ onMounted(async () => {
 })
 </script>
 <script scoped>
-import '@/assets/css/detailUser.css'
+import '@/assets/css/userDetail.css'
 </script>
 
 <template>
