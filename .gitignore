@@ -7,33 +7,76 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
-.DS_Store
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Production build
 dist
 dist-ssr
-coverage
 *.local
 
-# Editor directories and files
+# Test coverage
+coverage
+*.lcov
+.nyc_output
+
+# IDE & Editor
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+*~
+.vscode-test
+.history
 
+# TypeScript
 *.tsbuildinfo
+tsconfig.app.tsbuildinfo
 
+# ESLint
 .eslintcache
 
-# Cypress
+# Build tools
+.turbo
+.cache
+
+# Testing
+__screenshots__/
 /cypress/videos/
 /cypress/screenshots/
-
-# Vitest
-__screenshots__/
+.vite
 
 # Vite
 *.timestamp-*-*.mjs
+.vite/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE temp files
+*.code-workspace
+
+# Misc
+dist-*
+.vuepress/dist
+*.suo
+.idea/
+.git/
+
