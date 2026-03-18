@@ -26,7 +26,8 @@ async function handleLogin() {
     if (foundUser) {
       localStorage.setItem('user', JSON.stringify(foundUser))
       emit('close')
-      router.push('/')
+      // Utiliser router.back() pour revenir à la page précédente
+      router.back()
     } else {
       error.value = 'Identifiants incorrects'
     }
