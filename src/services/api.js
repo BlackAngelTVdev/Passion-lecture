@@ -2,7 +2,7 @@ import localDatabase from '../../db.json'
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3333'
 
-const fallbackUsers = Array.isArray(localDatabase.user) ? localDatabase.user : []
+// const fallbackUsers = Array.isArray(localDatabase.user) ? localDatabase.user : []
 
 const toNumberId = (value) => {
   const parsed = Number(value)
@@ -86,11 +86,16 @@ const readJson = async (response) => {
   return await response.json()
 }
 
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('auth_token')
+  return token ? { Authorization: `Bearer ${token}` } : {}
+}
+
 export default {
   // Récupérer tous les livres
   async getBooks() {
     try {
-      const response = await fetch(`${BASE_URL}/books`)
+      const response = await fetch(`${BASE_URL}/books`, { headers: { ...getAuthHeaders() } })
       if (!response.ok) throw new Error('Erreur de connexion')
       return (await response.json()).map(normalizeBook)
     } catch {
@@ -100,13 +105,19 @@ export default {
 
   // Récupérer tous les utilisateurs
   async getUsers() {
-    return fallbackUsers.map(normalizeUser)
+    try {
+      const response = await fetch(`${BASE_URL}/users`, { headers: { ...getAuthHeaders() } })
+      if (!response.ok) throw new Error('Erreur de connexion')
+      return (await response.json()).map(normalizeUser)
+    } catch (err) {
+      throw new Error('Impossible de récupérer les utilisateurs')
+    }
   },
 
   // Récupérer un livre par son ID (Crucial pour tes commentaires !)
   async getBookById(id) {
     try {
-      const response = await fetch(`${BASE_URL}/books/${id}`)
+      const response = await fetch(`${BASE_URL}/books/${id}`, { headers: { ...getAuthHeaders() } })
       if (!response.ok) throw new Error('Livre introuvable')
       return normalizeBook(await response.json())
     } catch {
@@ -116,10 +127,13 @@ export default {
 
   // Récupérer un utilisateur par son ID
   async getUserById(id) {
-    const user = fallbackUsers.find((entry) => toNumberId(entry.id) === toNumberId(id))
-    if (!user) throw new Error('User introuvable')
-
-    return normalizeUser(user)
+    try {
+      const response = await fetch(`${BASE_URL}/users/${id}`, { headers: { ...getAuthHeaders() } })
+      if (!response.ok) throw new Error('User introuvable')
+      return normalizeUser(await response.json())
+    } catch (err) {
+      throw new Error('User introuvable')
+    }
   },
 
   // Connexion utilisateur via le back
@@ -210,6 +224,7 @@ export default {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        ...getAuthHeaders(),
       },
       body: JSON.stringify(toApiBookPayload(bookData)),
     })
@@ -262,7 +277,7 @@ export default {
   async addBook(book) {
     const response = await fetch(`${BASE_URL}/books`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
       body: JSON.stringify(toApiBookPayload(book)),
     })
     const responseData = await readJson(response)
@@ -280,6 +295,7 @@ export default {
   async deleteBook(id) {
     const response = await fetch(`${BASE_URL}/books/${id}`, {
       method: 'DELETE',
+      headers: { ...getAuthHeaders() },
     })
 
     if (!response.ok) throw new Error('Échec de la suppression')
