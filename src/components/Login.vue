@@ -17,23 +17,19 @@ const router = useRouter()
 async function handleLogin() {
   error.value = null
   try {
-    const users = await api.getUsers()
+    const response = await api.login({ username: username.value, password: password.value })
 
-    const foundUser = users.find(
-      (u: any) => u.username === username.value && u.password === password.value,
-    )
-
-    if (foundUser) {
-      localStorage.setItem('user', JSON.stringify(foundUser))
+    if (response?.user) {
+      localStorage.setItem('user', JSON.stringify(response.user))
       emit('close')
-      // Utiliser router.back() pour revenir à la page précédente
       router.back()
-    } else {
-      error.value = 'Identifiants incorrects'
+      return
     }
+
+    error.value = 'Connexion impossible'
   } catch (err) {
     console.error(err)
-    error.value = 'Le serveur My JSON Server ne répond pas correctement.'
+    error.value = 'Le serveur de connexion ne répond pas correctement.'
   }
 }
 </script>

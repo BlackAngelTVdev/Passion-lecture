@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import api from '@/services/api'
 import '@/assets/css/register.css'
 
 const emit = defineEmits<{
@@ -19,9 +20,20 @@ async function handleRegister() {
       error.value = 'Les mots de passe ne correspondent pas'
       return
     }
+
+    const response = await api.register({
+      username: username.value,
+      password: password.value,
+      email: `${username.value.toLowerCase()}@passion-lecture.local`,
+    })
+
+    if (response?.user) {
+      localStorage.setItem('user', JSON.stringify(response.user))
+      emit('switch-to-login')
+    }
   } catch (err) {
     console.error(err)
-    error.value = 'Le serveur My JSON Server ne répond pas correctement.'
+    error.value = 'Le serveur d’inscription ne répond pas correctement.'
   }
 }
 </script>

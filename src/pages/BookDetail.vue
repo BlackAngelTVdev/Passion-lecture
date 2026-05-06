@@ -86,9 +86,7 @@ const submitRating = async (ratingValue) => {
         book.value = updatedBook
         userRating.value = ratingValue
     } catch (err) {
-        console.warn("Update serveur impossible, sauvegarde en cache local...")
         book.value = updatedBook
-        api._saveToCache(`book_${book.value.id}`, updatedBook)
     }
 }
 
@@ -112,9 +110,7 @@ const submitComment = async () => {
         book.value = updatedBook
         closeModal()
     } catch (err) {
-        console.warn("Serveur injoignable, update cache seulement.")
         book.value = updatedBook
-        api._saveToCache(`book_${book.value.id}`, updatedBook)
         closeModal()
     }
 }

@@ -1,84 +1,207 @@
-const BASE_URL = 'https://my-json-server.typicode.com/BlackAngelTVdev/Passion-lecture'
-const CACHE_DURATION = 15 * 60 * 1000 // 15 minutes en ms
+import localDatabase from '../../db.json'
+
+const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3333'
+
+const fallbackUsers = Array.isArray(localDatabase.user) ? localDatabase.user : []
+
+const toNumberId = (value) => {
+  const parsed = Number(value)
+  return Number.isNaN(parsed) ? value : parsed
+}
+
+const normalizeUser = (user) => ({
+  ...user,
+  id: toNumberId(user.id),
+  admin: user.admin === true,
+})
+
+const normalizeComment = (comment) => ({
+  id: toNumberId(comment.id),
+  userId: toNumberId(comment.userId),
+  title: comment.title ?? comment.contenu ?? '',
+})
+
+const normalizeRate = (rate) => ({
+  id: toNumberId(rate.id),
+  userId: toNumberId(rate.userId),
+  value: rate.value,
+})
+
+const normalizeBook = (book) => {
+  const comments = Array.isArray(book.comments)
+    ? book.comments.map(normalizeComment)
+    : Array.isArray(book.commentaires)
+      ? book.commentaires.map(normalizeComment)
+      : []
+
+  const rates = Array.isArray(book.rates)
+    ? book.rates.map(normalizeRate)
+    : Array.isArray(book.ratesList)
+      ? book.ratesList.map(normalizeRate)
+      : []
+
+  return {
+    ...book,
+    id: toNumberId(book.id),
+    userId: toNumberId(book.userId),
+    title: book.title ?? book.titre ?? '',
+    author: book.author ?? book.auteur ?? '',
+    category: book.category ?? book.categorie ?? '',
+    editor: book.editor ?? book.editeur ?? '',
+    published:
+      book.published ??
+      (book.createdAt ? new Date(book.createdAt).getFullYear() : '') ??
+      '',
+    nbpages: book.nbpages ?? book.nbPages ?? '',
+    resume: book.resume ?? '',
+    extrait: book.extrait ?? book.extraitPdf ?? '',
+    image: book.image ?? book.imageCouverture ?? '',
+    comments,
+    rates,
+    titre: book.titre ?? book.title ?? '',
+    auteur: book.auteur ?? book.author ?? '',
+    categorie: book.categorie ?? book.category ?? '',
+    editeur: book.editeur ?? book.editor ?? '',
+    nbPages: book.nbPages ?? book.nbpages ?? null,
+    extraitPdf: book.extraitPdf ?? book.extrait ?? '',
+    imageCouverture: book.imageCouverture ?? book.image ?? '',
+  }
+}
+
+const toApiBookPayload = (book) => ({
+  titre: book.title ?? book.titre ?? '',
+  auteur: book.author ?? book.auteur ?? '',
+  categorie: book.category ?? book.categorie ?? '',
+  editeur: book.editor ?? book.editeur ?? '',
+  epub: book.epub ?? '',
+  resume: book.resume ?? '',
+  nbPages: Number(book.nbpages ?? book.nbPages) || null,
+  extraitPdf: book.extrait ?? book.extraitPdf ?? '',
+  imageCouverture: book.image ?? book.imageCouverture ?? '',
+  userId: toNumberId(book.userId),
+})
+
+const readJson = async (response) => {
+  if (response.status === 204) return null
+  return await response.json()
+}
 
 export default {
-  // --- SYSTÈME DE MÉMOIRE LOCALE (CACHE) ---
-
-  // save en local storage avec timestamp pour supp au bon moment
-  _saveToCache(key, data) {
-    const cacheEntry = {
-      timestamp: Date.now(), // timestamp
-      payload: data, // donnée
-    }
-    // object -> texte pour le localstorage
-    localStorage.setItem(key, JSON.stringify(cacheEntry))
-  },
-
-  // On récupère la donnée, mais seulement si elle n'est pas trop vieille
-  _getFromCache(key) {
-    // regarde si la clef existe
-    const cached = localStorage.getItem(key)
-
-    // si y a rien on passe
-    if (!cached) return null
-
-    // on separt le timestamp du contenu qui viens de "_saveToCahe"
-    const { timestamp, payload } = JSON.parse(cached)
-
-    // calcule si c'est plus que 15min
-    if (Date.now() - timestamp > CACHE_DURATION) {
-      localStorage.removeItem(key) // on supp
-      return null // et on dis que c'est vide
-    }
-
-    // returne l'object si il est pas trop vieux
-    return payload
-  },
-
-  // Récupérer tous les livres (avec cache)
+  // Récupérer tous les livres
   async getBooks() {
-    const cached = this._getFromCache('all_books')
-    if (cached) return cached
-
-    const response = await fetch(`${BASE_URL}/books`)
-    if (!response.ok) throw new Error('Erreur de connexion')
-    const data = await response.json()
-
-    this._saveToCache('all_books', data)
-    return data
+    try {
+      const response = await fetch(`${BASE_URL}/books`)
+      if (!response.ok) throw new Error('Erreur de connexion')
+      return (await response.json()).map(normalizeBook)
+    } catch {
+      throw new Error('Erreur de connexion')
+    }
   },
 
   // Récupérer tous les utilisateurs
   async getUsers() {
-    const cached = this._getFromCache('all_users')
-    if (cached) return cached
-
-    const response = await fetch(`${BASE_URL}/user`)
-    if (!response.ok) throw new Error('Erreur de connexion')
-    const data = await response.json()
-
-    this._saveToCache('all_users', data)
-    return data
+    return fallbackUsers.map(normalizeUser)
   },
 
   // Récupérer un livre par son ID (Crucial pour tes commentaires !)
   async getBookById(id) {
-    const cached = this._getFromCache(`book_${id}`)
-    if (cached) return cached
-
-    const response = await fetch(`${BASE_URL}/books/${id}`)
-    if (!response.ok) throw new Error('Livre introuvable')
-    const data = await response.json()
-
-    this._saveToCache(`book_${id}`, data)
-    return data
+    try {
+      const response = await fetch(`${BASE_URL}/books/${id}`)
+      if (!response.ok) throw new Error('Livre introuvable')
+      return normalizeBook(await response.json())
+    } catch {
+      throw new Error('Livre introuvable')
+    }
   },
 
   // Récupérer un utilisateur par son ID
   async getUserById(id) {
-    const response = await fetch(`${BASE_URL}/user/${id}`)
-    if (!response.ok) throw new Error('User introuvable')
-    return await response.json()
+    const user = fallbackUsers.find((entry) => toNumberId(entry.id) === toNumberId(id))
+    if (!user) throw new Error('User introuvable')
+
+    return normalizeUser(user)
+  },
+
+  // Connexion utilisateur via le back
+  async login(credentials) {
+    const response = await fetch(`${BASE_URL}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    })
+
+    const data = await readJson(response)
+    if (!response.ok) {
+      throw new Error(data?.message ?? 'Identifiants invalides')
+    }
+
+    if (data?.token) {
+      localStorage.setItem('auth_token', data.token)
+    }
+
+    return {
+      ...data,
+      user: data?.user ? normalizeUser(data.user) : null,
+    }
+  },
+
+  // Inscription utilisateur via le back
+  async register(payload) {
+    const response = await fetch(`${BASE_URL}/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+
+    const data = await readJson(response)
+    if (!response.ok) {
+      throw new Error(data?.message ?? 'Impossible de créer le compte')
+    }
+
+    if (data?.token) {
+      localStorage.setItem('auth_token', data.token)
+    }
+
+    return {
+      ...data,
+      user: data?.user ? normalizeUser(data.user) : null,
+    }
+  },
+
+  async logout() {
+    const token = localStorage.getItem('auth_token')
+    const response = await fetch(`${BASE_URL}/logout`, {
+      method: 'POST',
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error('Échec de la déconnexion')
+    }
+
+    localStorage.removeItem('auth_token')
+  },
+
+  async getProfile() {
+    const token = localStorage.getItem('auth_token')
+    const response = await fetch(`${BASE_URL}/profile`, {
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+    })
+
+    const data = await readJson(response)
+    if (!response.ok) {
+      throw new Error(data?.message ?? 'Profil introuvable')
+    }
+
+    return normalizeUser(data)
   },
 
   // Mise à jour du livre
@@ -88,33 +211,21 @@ export default {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(bookData),
+      body: JSON.stringify(toApiBookPayload(bookData)),
     })
 
-    if (!response.ok) throw new Error('Échec de la sauvegarde')
+    const responseData = await readJson(response)
 
-    const updatedBook = await response.json()
+    if (!response.ok) throw new Error(responseData?.message ?? 'Échec de la sauvegarde')
+
+    const updatedBook = normalizeBook({
+      ...responseData,
+      ...bookData,
+      id,
+    })
 
     // Sécurité comms
     if (!updatedBook.comments) updatedBook.comments = []
-
-    // 1. On met à jour le cache du livre lui-même (toujours)
-    this._saveToCache(`book_${id}`, updatedBook)
-
-    // 2. On met à jour la liste globale UNIQUEMENT si elle existe déjà dans le cache
-    const allBooks = this._getFromCache('all_books')
-
-    if (allBooks && Array.isArray(allBooks)) {
-      // On cherche si le livre est présent dans la liste actuelle
-      const exists = allBooks.find((b) => b.id == id)
-
-      if (exists) {
-        // S'il est dedans, on le remplace proprement
-        const updatedList = allBooks.map((b) => (b.id == id ? updatedBook : b))
-        this._saveToCache('all_books', updatedList)
-      }
-      // Si "exists" est faux, on ne fait rien, on ne veut pas polluer le cache
-    }
 
     return updatedBook
   },
@@ -152,21 +263,16 @@ export default {
     const response = await fetch(`${BASE_URL}/books`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(book),
+      body: JSON.stringify(toApiBookPayload(book)),
     })
-    if (!response.ok) throw new Error("Échec de l'ajout du livre")
+    const responseData = await readJson(response)
 
-    const newBook = await response.json()
+    if (!response.ok) throw new Error(responseData?.message ?? "Échec de l'ajout du livre")
 
-    // On ajoute le livre dans le cache de la liste
-    const cached = this._getFromCache('all_books')
-    if (cached) {
-      cached.push(newBook)
-      this._saveToCache('all_books', cached)
-    }
-
-    // On le cache aussi individuellement
-    this._saveToCache(`book_${newBook.id}`, newBook)
+    const newBook = normalizeBook({
+      ...responseData,
+      ...book,
+    })
 
     return newBook
   },
@@ -177,16 +283,5 @@ export default {
     })
 
     if (!response.ok) throw new Error('Échec de la suppression')
-
-    // NETTOYAGE DU CACHE
-    // 1. Supprime le cache individuel du livre
-    localStorage.removeItem(`book_${id}`)
-
-    // 2. Supprime le livre de la liste globale en cache
-    const allBooks = this._getFromCache('all_books')
-    if (allBooks) {
-      const updatedList = allBooks.filter((b) => b.id != id)
-      this._saveToCache('all_books', updatedList)
-    }
   },
 }

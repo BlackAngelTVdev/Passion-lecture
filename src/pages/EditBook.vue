@@ -70,16 +70,7 @@ async function handleUpdate() {
 
     const finalData = { ...currentBook, ...form.value }
 
-    try {
-      await api.updateBook(bookId, finalData)
-    } catch (serverErr) {
-      api._saveToCache(`book_${bookId}`, finalData)
-      const allBooks = api._getFromCache('all_books')
-      if (allBooks) {
-        const updatedList = allBooks.map((b) => (b.id == bookId ? finalData : b))
-        api._saveToCache('all_books', updatedList)
-      }
-    }
+    await api.updateBook(bookId, finalData)
     alert('Modification enregistrée !')
     router.push({ name: 'BookDetail', params: { id: bookId } })
   } catch (err) {
