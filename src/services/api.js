@@ -13,6 +13,7 @@ const normalizeUser = (user) => ({
   ...user,
   id: toNumberId(user.id),
   admin: user.admin === true,
+  createdAt: user.createdAt ?? user.created_at ?? user.created_at ?? null,
 })
 
 const normalizeComment = (comment) => ({

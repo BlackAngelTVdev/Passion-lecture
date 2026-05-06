@@ -7,7 +7,11 @@ const route = useRoute()
 const user = ref(null)
 
 const formatDate = (dateString) => {
+    if (!dateString) return 'Date inconnue'
+
     const date = new Date(dateString)
+    if (Number.isNaN(date.getTime())) return 'Date inconnue'
+
     return new Intl.DateTimeFormat('fr-FR', {
         year: 'numeric',
         month: 'long',
