@@ -21,6 +21,7 @@ async function handleLogin() {
 
     if (response?.user) {
       localStorage.setItem('user', JSON.stringify(response.user))
+      window.dispatchEvent(new Event('auth-changed'))
       emit('close')
       router.back()
       return

@@ -29,6 +29,7 @@ async function handleRegister() {
 
     if (response?.user) {
       localStorage.setItem('user', JSON.stringify(response.user))
+      window.dispatchEvent(new Event('auth-changed'))
       emit('switch-to-login')
     }
   } catch (err) {
