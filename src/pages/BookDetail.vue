@@ -11,6 +11,8 @@ const loading = ref(true)
 const showModal = ref(false)
 const newComment = ref('')
 const userRating = ref(0)
+const commentError = ref('')
+const isSubmittingComment = ref(false)
 
 // --- LOGIQUE UTILISATEUR ---
 
@@ -91,27 +93,27 @@ const submitRating = async (ratingValue) => {
 }
 
 const submitComment = async () => {
-    if (newComment.value.trim() === "") return
-    const userId = getConnectedUserId()
-    if (!userId) return alert("Connecte-toi pour commenter !")
-
-    const commentObj = {
-        id: Date.now(),
-        userId: userId,
-        title: newComment.value
+    const trimmedComment = newComment.value.trim()
+    if (!trimmedComment) {
+        commentError.value = "Écris un commentaire avant d'envoyer."
+        return
+    }
+    if (!book.value?.id) {
+        commentError.value = "Livre introuvable."
+        return
     }
 
-    const updatedBook = { ...book.value }
-    if (!updatedBook.comments) updatedBook.comments = []
-    updatedBook.comments.push(commentObj)
-
     try {
-        await api.updateBook(book.value.id, updatedBook)
-        book.value = updatedBook
+        commentError.value = ""
+        isSubmittingComment.value = true
+        await api.addComment(book.value.id, trimmedComment)
+        book.value = await api.getBookById(book.value.id)
         closeModal()
     } catch (err) {
-        book.value = updatedBook
-        closeModal()
+        console.error("Erreur commentaire :", err)
+        commentError.value = err?.message ?? "Impossible d'ajouter le commentaire"
+    } finally {
+        isSubmittingComment.value = false
     }
 }
 
@@ -119,6 +121,7 @@ const openModal = () => showModal.value = true
 const closeModal = () => {
     showModal.value = false
     newComment.value = ""
+    commentError.value = ""
 }
 </script>
 
@@ -183,7 +186,7 @@ const closeModal = () => {
 
                             <div v-if="book.comments && book.comments.length > 0">
                                 <div v-for="comment in book.comments" :key="comment.id" class="comment-card">
-                                    <p><strong>{{ getUserName(comment.userId) }}</strong></p>
+                                    <p><strong>{{ comment.username || getUserName(comment.userId) }}</strong></p>
                                     <p>{{ comment.title }}</p>
                                 </div>
                             </div>
@@ -195,11 +198,17 @@ const closeModal = () => {
                                 <h2 style="font-family: 'Jaro';">Laisse ton avis</h2>
                                 <textarea v-model="newComment" placeholder="Alors, ce bouquin ?"
                                     class="comment-textarea"></textarea>
+                                <p v-if="commentError" class="comment-error" style="color:#b00020; font-weight:600;">
+                                    {{ commentError }}
+                                </p>
                                 <div class="modal-actions">
                                     <button @click="closeModal" class="btn-extrait"
                                         style="border:none; background:none; cursor:pointer;">Annuler</button>
-                                    <button @click="submitComment" class="category-tag"
-                                        style="border:none; cursor:pointer;">Poster</button>
+                                    <button @click.prevent.stop="submitComment" class="category-tag"
+                                        :disabled="isSubmittingComment" type="button"
+                                        style="border:none; cursor:pointer;">
+                                        {{ isSubmittingComment ? 'Envoi...' : 'Poster' }}
+                                    </button>
                                 </div>
                             </div>
                         </div>

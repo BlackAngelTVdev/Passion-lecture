@@ -20,6 +20,9 @@ const normalizeComment = (comment) => ({
   id: toNumberId(comment.id),
   userId: toNumberId(comment.userId),
   title: comment.title ?? comment.contenu ?? '',
+  contenu: comment.contenu ?? comment.title ?? '',
+  createdAt: comment.createdAt ?? comment.created_at ?? null,
+  username: comment.username ?? comment.auteur?.username ?? null,
 })
 
 const normalizeRate = (rate) => ({
@@ -84,7 +87,14 @@ const toApiBookPayload = (book) => ({
 
 const readJson = async (response) => {
   if (response.status === 204) return null
-  return await response.json()
+  const text = await response.text()
+  if (!text.trim()) return null
+
+  try {
+    return JSON.parse(text)
+  } catch {
+    return null
+  }
 }
 
 const getAuthHeaders = () => {
@@ -244,6 +254,36 @@ export default {
     if (!updatedBook.comments) updatedBook.comments = []
 
     return updatedBook
+  },
+
+  async getBookComments(bookId) {
+    const response = await fetch(`${BASE_URL}/books/${bookId}/comments`, {
+    })
+
+    if (!response.ok) {
+      throw new Error('Impossible de récupérer les commentaires')
+    }
+
+    return (await response.json()).map(normalizeComment)
+  },
+
+  async addComment(bookId, contenu) {
+    const response = await fetch(`${BASE_URL}/books/${bookId}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders(),
+      },
+      body: JSON.stringify({ contenu }),
+    })
+
+    const data = await readJson(response)
+
+    if (!response.ok) {
+      throw new Error(data?.message ?? "Impossible d'ajouter le commentaire")
+    }
+
+    return data ? normalizeComment(data) : null
   },
 
   // Récupérer les stats d'un utilisateur
