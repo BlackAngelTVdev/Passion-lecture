@@ -72,23 +72,14 @@ const submitRating = async (ratingValue) => {
     const userId = getConnectedUserId()
     if (!userId) return alert("Connecte-toi pour noter !")
 
-    const rateObj = { userId, value: ratingValue }
-    const updatedBook = { ...book.value }
-    if (!updatedBook.rates) updatedBook.rates = []
-
-    const existingRateIndex = updatedBook.rates.findIndex(r => r.userId === userId)
-    if (existingRateIndex !== -1) {
-        updatedBook.rates[existingRateIndex] = rateObj
-    } else {
-        updatedBook.rates.push(rateObj)
-    }
-
     try {
-        await api.updateBook(book.value.id, updatedBook)
-        book.value = updatedBook
+        await api.rateBook(book.value.id, ratingValue)
+        // Recharger le livre pour avoir les données à jour depuis la DB
+        book.value = await api.getBookById(book.value.id)
         userRating.value = ratingValue
     } catch (err) {
-        book.value = updatedBook
+        console.error('Erreur de notation :', err)
+        alert('Impossible de noter ce livre pour le moment.')
     }
 }
 
