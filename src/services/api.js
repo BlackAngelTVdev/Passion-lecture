@@ -256,6 +256,23 @@ export default {
     return updatedBook
   },
 
+  
+  async rateBook(bookId, value) {
+    const response = await fetch(`${BASE_URL}/books/${bookId}/rates`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders(),
+      },
+      body: JSON.stringify({ value }),
+    })
+
+    const responseData = await readJson(response)
+    if (!response.ok) throw new Error(responseData?.message ?? 'Échec de l’enregistrement de la note')
+
+    return normalizeRate(responseData)
+  },
+  
   async getBookComments(bookId) {
     const response = await fetch(`${BASE_URL}/books/${bookId}/comments`, {
     })
