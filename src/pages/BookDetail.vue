@@ -36,7 +36,8 @@ const getUserName = (userId) => {
 const averageRating = computed(() => {
     if (!book.value || !book.value.rates || book.value.rates.length === 0) return "N/A"
     const sum = book.value.rates.reduce((acc, curr) => acc + curr.value, 0)
-    return (sum / book.value.rates.length).toFixed(1)
+    const exact = sum / book.value.rates.length
+    return (Math.round(exact*2) / 2).toFixed(1)
 })
 
 const totalVotes = computed(() => {
