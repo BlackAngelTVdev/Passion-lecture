@@ -1,6 +1,6 @@
 import localDatabase from '../../db.json'
 
-const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3333'
+const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3333/api'
 
 // const fallbackUsers = Array.isArray(localDatabase.user) ? localDatabase.user : []
 
